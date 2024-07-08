@@ -12,13 +12,13 @@ comments: false
         </li>
         <li>
           <a href="https://github.com/hwangsangjin" itemprop="sameAs" rel="nofollow noopener noreferrer">
-            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">  https://github.com/choiiis</span>
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">  https://github.com/hwangsangjin</span>
           </a>
         </li>
         <li>
           <a href="mailto:hwangsangjin88@gmail.com">
-            <meta itemprop="email" content="bemychoiiis@gmail.com" />
-            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">  bemychoiiis@gmail.com</span>
+            <meta itemprop="email" content="hwangsangjin88@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">  hwangsangjin88@gmail.com</span>
           </a>
         </li>
     </ul>

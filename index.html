@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sangjin Hwang | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;800&display=swap"
+    rel="stylesheet" />
+  <script type="module" crossorigin src="/assets/index-QlO64J5A.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-kboADXbc.css">
+</head>
+
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <!-- Background Grid -->
+  <div class="bg-grid"></div>
+  <div class="scanline"></div>
+
+  <!-- ─── NAVIGATION ─── -->
+  <nav class="nav" id="nav">
+    <div class="nav-logo">
+      <span class="logo-bracket">[</span>
+      <span class="logo-text">HSJ</span>
+      <span class="logo-bracket">]</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about" data-text="ABOUT">ABOUT</a></li>
+      <li><a href="#skills" data-text="SKILLS">SKILLS</a></li>
+      <li><a href="#projects" data-text="PROJECTS">PROJECTS</a></li>
+      <li><a href="#contact" data-text="CONTACT">CONTACT</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-text">GAME PROGRAMMER</span>
+        <span class="eyebrow-line"></span>
+      </div>
+      <h1 class="hero-title">
+        <span class="title-line" data-delay="0">Sangjin</span>
+        <span class="title-line accent" data-delay="150">Hwang</span>
+      </h1>
+      <p class="hero-sub">
+        같은 세계에서 함께 플레이하는 경험을<br>
+        코드로 구현합니다.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">
+          <span>VIEW PROJECTS</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+        </a>
+        <a href="#contact" class="btn btn-ghost">GET IN TOUCH</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hex-grid">
+        <div class="hex h1"><span>C++</span></div>
+        <div class="hex h2"><span>UE</span></div>
+        <div class="hex h3"><span>GAS</span></div>
+        <div class="hex h4 active"><span>GAME DEV</span></div>
+        <div class="hex h5"><span>Dedicated Server</span></div>
+        <div class="hex h6"><span>AWS EC2</span></div>
+        <div class="hex h7"><span>Git</span></div>
+      </div>
+      <!-- <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num" data-target="3">0</span>
+          <span class="stat-label">PROJECTS</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" data-target="5">0</span>
+          <span class="stat-label">YEARS EXP</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" data-target="3">0</span>
+          <span class="stat-label">SHIPPED GAMES</span>
+        </div>
+      </div> -->
+    </div>
+
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>SCROLL</span>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─── -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="section-label">
+        <span>▌</span>
+        <span>ABOUT ME</span>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <h2 class="section-title">
+            Hello,<br>I'm <em>Sangjin Hwang</em>
+          </h2>
+          <p>
+            온라인 게임을 접하며 여러 플레이어가 실시간으로 연결되는 구조가 어떻게 동작하는지 궁금해졌고, 그 관심이 자연스럽게 게임을 만들어보고 싶다는 목표로 이어졌습니다.
+          </p>
+          <p>
+            게임을 개발하면서 모르는 것이 생길 때마다 찾아보고 이해하는 과정을 반복했고, 그렇게 하나씩 쌓아온 것들이 지금의 기반이 되었습니다.
+          </p>
+          <p>
+            현재는 언리얼 엔진과 게임플레이 어빌리티 시스템을 활용한 온라인 RPG를 제작하며, 게임 클라이언트부터 데디케이티드 서버와 클라우드 인프라까지 구축하고 있습니다.
+          </p>
+          <!-- <div class="about-tags">
+            <span class="tag">C++</span>
+            <span class="tag">Unreal Engine 5</span>
+            <span class="tag">Gameplay Ability System</span>
+            <span class="tag">Dedicated Server</span>
+            <span class="tag">Amazon EC2</span>
+            <span class="tag">Git</span>
+          </div> -->
+        </div>
+        <div class="about-visual">
+          <div class="avatar-card">
+            <div class="avatar-img">
+              <!-- <div class="avatar-pixel-art" id="pixelAvatar"></div> -->
+              <div class="avatar-pixel-art"></div>
+            </div>
+            <div class="avatar-info">
+              <p class="avatar-name">Sangjin Hwang</p>
+              <p class="avatar-role">Game Programmer</p>
+              <!-- <div class="avatar-badges">
+                <span class="badge">🎮 Indie Dev</span>
+                <span class="badge">🏆 Game Jam Winner</span>
+              </div> -->
+              <div class="about-tags">
+                <span class="tag">C++</span>
+                <span class="tag">Unreal Engine</span>
+                <span class="tag">Gameplay Ability System</span>
+                <span class="tag">Dedicated Server</span>
+                <span class="tag">Amazon EC2</span>
+                <span class="tag">Git</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SKILLS ─── -->
+  <section class="section skills" id="skills">
+    <div class="container">
+      <div class="section-label">
+        <span>▌</span>
+        <span>SKILLS</span>
+      </div>
+      <h2 class="section-title">Tech <em>Stack</em></h2>
+      <div class="skills-grid">
+
+        <div class="skill-card" data-level="90">
+          <div class="skill-icon">💻</div>
+          <h3>C++ Programming</h3>
+          <p>Game logic, Memory management, OOP, STL, Smart pointer, Template, Multithreading</p>
+          <!-- <div class="skill-bar">
+            <div class="skill-fill" data-width="90"></div>
+          </div>
+          <span class="skill-percent">90%</span> -->
+        </div>
+
+        <div class="skill-card" data-level="95">
+          <div class="skill-icon">🎮</div>
+          <h3>Unreal Engine</h3>
+          <p>Gameplay Framework, Gameplay Ability System, Behavior Tree, Animation Blueprint, UMG</p>
+          <!-- <div class="skill-bar">
+            <div class="skill-fill" data-width="95"></div>
+          </div>
+          <span class="skill-percent">95%</span> -->
+        </div>
+
+        <!-- <div class="skill-card" data-level="85">
+          <div class="skill-icon">🗃️</div>
+          <h3>Data Structures</h3>
+          <p>Array, Linked List, Stack, Queue, Tree, Graph, Heap, Hash Table, STL containers</p>
+          <div class="skill-bar">
+            <div class="skill-fill" data-width="85"></div>
+          </div>
+          <span class="skill-percent">85%</span>
+        </div>
+
+        <div class="skill-card" data-level="85">
+          <div class="skill-icon">💡</div>
+          <h3>Algorithms</h3>
+          <p>Sorting, Searching, Graph traversal, Greedy, Dynamic programming</p>
+          <div class="skill-bar">
+            <div class="skill-fill" data-width="85"></div>
+          </div>
+          <span class="skill-percent">85%</span>
+        </div> -->
+
+        <div class="skill-card" data-level="80">
+          <div class="skill-icon">🎨</div>
+          <h3>Computer Graphics</h3>
+          <p>Rendering pipeline, Geometric transformation, Lighting models, Shader basics</p>
+          <!-- <div class="skill-bar">
+            <div class="skill-fill" data-width="80"></div>
+          </div>
+          <span class="skill-percent">80%</span> -->
+        </div>
+
+        <div class="skill-card" data-level="75">
+          <div class="skill-icon">🌐</div>
+          <h3>Multiplayer Networking</h3>
+          <p>Client-Server architecture, Replication, RPC, Listen Server, Dedicated Server</p>
+          <!-- <div class="skill-bar">
+            <div class="skill-fill" data-width="75"></div>
+          </div>
+          <span class="skill-percent">75%</span> -->
+        </div>
+
+        <div class="skill-card" data-level="70">
+          <div class="skill-icon">⚙️</div>
+          <h3>Cloud & DevOps</h3>
+          <p>AWS EC2, Docker, Kubernetes, CI/CD pipeline, Linux environment</p>
+          <!-- <div class="skill-bar">
+            <div class="skill-fill" data-width="70"></div>
+          </div>
+          <span class="skill-percent">70%</span> -->
+        </div>
+
+        <div class="skill-card" data-level="75">
+          <div class="skill-icon">🔗</div>
+          <h3>Collaboration</h3>
+          <p>GitHub workflow, Branch strategy, Issue tracking, Version control</p>
+          <!-- <div class="skill-bar">
+            <div class="skill-fill" data-width="75"></div>
+          </div>
+        <span class="skill-percent">75%</span> -->
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PROJECTS ─── -->
+  <section class="section projects" id="projects">
+    <div class="container">
+      <div class="section-label">
+        <span>▌</span>
+        <span>PROJECTS</span>
+      </div>
+      <h2 class="section-title">Featured <em>Games</em></h2>
+      <div class="projects-grid">
+
+        <article class="project-card" data-index="01">
+          <div class="project-thumb">
+            <div class="project-thumb-inner p1"></div>
+            <div class="project-overlay">
+              <!-- <a href="https://hwangsangjin.notion.site/Eternal-Quest-World-1f7bf605243f80ad833dce914a57ffd7"
+                target="_blank" class="btn btn-sm btn-ghost">VIEW MORE</a> -->
+              <a class="btn btn-sm btn-ghost btn-disabled">IN PROGRESS</a>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-meta">
+              <span class="project-num">01</span>
+              <span class="project-year">2026</span>
+            </div>
+            <h3 class="project-title">Eternal Quest: World</h3>
+            <p class="project-desc">Eternal Quest: World는 언리얼 엔진 기반의 온라인 RPG 프로젝트입니다. 게임플레이 어빌리티 시스템을 활용한 전투 시스템과 함께,
+              데디케이티드 서버 구조 및 클라우드 인프라를 적용하여 실시간 온라인 게임 서비스를
+              목표로 개발하고 있습니다.</p>
+            <div class="project-tags">
+              <span>Personal</span><span>Unreal Engine</span><span>Dedicated Server</span><span>Amazon EC2</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card" data-index="02">
+          <div class="project-thumb">
+            <div class="project-thumb-inner p2"></div>
+            <div class="project-overlay">
+              <a href="https://hwangsangjin.notion.site/Eternal-Quest-Rebirth-1e6bf605243f8072bcb3cc43fde60dfe"
+                target="_blank" class="btn btn-sm btn-ghost">VIEW MORE</a>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-meta">
+              <span class="project-num">02</span>
+              <span class="project-year">2025</span>
+            </div>
+            <h3 class="project-title">Eternal Quest: Rebirth</h3>
+            <p class="project-desc">Eternal Quest: Rebirth는 언리얼 엔진과 게임플레이 어빌리티 시스템을 활용하여 개발한 액션 RPG 프로젝트입니다. 전투 및 스킬
+              시스템, 캐릭터 성장 요소를 구현하며 게임플레이 어빌리티 시스템 기반의 게임 설계와 구조를 학습하고 적용했습니다.</p>
+            <div class="project-tags">
+              <span>Personal</span><span>Unreal Engine</span><span>Gameplay Ability System</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card" data-index="03">
+          <div class="project-thumb">
+            <div class="project-thumb-inner p3"></div>
+            <div class="project-overlay">
+              <a href="https://hwangsangjin.notion.site/Eternal-Quest-Origin-11bbf605243f81b9a110f0bb973f6ca1"
+                target="_blank" class="btn btn-sm btn-ghost">VIEW MORE</a>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-meta">
+              <span class="project-num">03</span>
+              <span class="project-year">2024</span>
+            </div>
+            <h3 class="project-title">Eternal Quest: Origin</h3>
+            <p class="project-desc">Eternal Quest: Origin은 언리얼 엔진과 온라인 서브 시스템을 활용하여 개발한 멀티플레이어 RPG 프로젝트입니다. 세션 생성 및 접속
+              기능을 구현하고, 플레이어 간 네트워크 상태 동기화를 처리했습니다. 또한 캐릭터 직업별 공격 및 스킬 컴포넌트를 제작했습니다.</p>
+            <div class="project-tags">
+              <span>Team</span><span>Unreal Engine</span><span>Online Subsystem</span><span>Git</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="project-section-divider"></div>
+
+      <h2 class="section-title project-section-sub-title">Cloud <em>Infrastructure</em></h2>
+      <div class="projects-grid">
+        <article class="project-card" data-index="04">
+          <div class="project-thumb">
+            <div class="project-thumb-inner p4"></div>
+            <div class="project-overlay">
+              <a class="btn btn-sm btn-ghost">IN PROGRESS</a>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-meta">
+              <span class="project-num">04</span>
+              <span class="project-year">2026</span>
+            </div>
+            <h3 class="project-title">In progress</h3>
+            <p class="project-desc">In progress</p>
+            <div class="project-tags">
+              <span>In progress</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card" data-index="05">
+          <div class="project-thumb">
+            <div class="project-thumb-inner p5"></div>
+            <div class="project-overlay">
+              <a class="btn btn-sm btn-ghost">IN PROGRESS</a>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-meta">
+              <span class="project-num">05</span>
+              <span class="project-year">2026</span>
+            </div>
+            <h3 class="project-title">In progress</h3>
+            <p class="project-desc">In progress</p>
+            <div class="project-tags">
+              <span>In progress</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ─── -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="section-label">
+        <span>▌</span>
+        <span>CONTACT</span>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-text">
+          <h2 class="section-title">Let's build something <em>great!</em></h2>
+          <p>프로젝트와 협업, 그리고 게임에 대한 다양한 이야기를 기다리고 있습니다.<br>
+            언제든지 편하게 연락해주세요.
+          </p>
+          <div class="contact-links">
+            <a href="mailto:hwangsangjin88@gmail.com" class="contact-link">
+              <span class="cl-icon">✉</span>
+              <span>hwangsangjin88@gmail.com</span>
+            </a>
+            <a href="https://linkedin.com/in/hwangsangjin" target="_blank" class="contact-link">
+              <span class="cl-icon">⌘</span>
+              <span>linkedin.com/in/hwangsangjin</span>
+            </a>
+            <a href="https://github.com/hwangsangjin" target="_blank" class="contact-link">
+              <span class="cl-icon">⌥</span>
+              <span>github.com/hwangsangjin</span>
+            </a>
+          </div>
+        </div>
+        <!-- <div class="contact-form-wrap">
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label for="name">NAME</label>
+              <input type="text" id="name" name="name" placeholder="Your name" autocomplete="off" />
+            </div>
+            <div class="form-group">
+              <label for="email">EMAIL</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="off" />
+            </div>
+            <div class="form-group">
+              <label for="message">MESSAGE</label>
+              <textarea id="message" name="message" placeholder="Tell me about your project..." rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary full-width">
+              <span>SEND MESSAGE</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M2 8L14 2L10 8L14 14L2 8Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+              </svg>
+            </button>
+            <div class="form-success" id="formSuccess">
+              ✔ Message sent! I'll get back to you soon.
+            </div>
+          </form> -->
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <!-- <span class="footer-logo">[HSJ]</span> -->
+      <span class="footer-copy">© 2026 Sangjin Hwang. All rights reserved.</span>
+    </div>
+  </footer>
+
+
+</body>
+
+</html>

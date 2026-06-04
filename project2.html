@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eternal Quest: Rebirth | Sangjin Hwang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --bg: #101c2a;
+      --bg2: #16263a;
+      --surface: #1d2f46;
+      --border: #2d4361;
+      --accent: #27e6d0;
+      --accent2: #ff7fb3;
+      --accent3: #ffbf7a;
+      --text: #e6f0fa;
+      --text-dim: #8ea2b7;
+      --white: #f5fbff;
+      --font-head: 'Orbitron', monospace;
+      --font-mono: 'Space Mono', monospace;
+      --font-ko: 'Noto Sans KR', sans-serif;
+      --radius: 4px
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-ko);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    ::-webkit-scrollbar {
+      width: 4px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg)
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 2px
+    }
+
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: .25;
+      pointer-events: none
+    }
+
+    .scanline {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      background: repeating-linear-gradient(transparent, transparent 2px, rgba(0, 0, 0, .06) 2px, rgba(0, 0, 0, .06) 4px);
+      pointer-events: none
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 2.5rem;
+      background: rgba(8, 12, 16, .85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border)
+    }
+
+    .nav-logo {
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: 1.2rem;
+      letter-spacing: .1em;
+      color: var(--white)
+    }
+
+    .nav-logo .br {
+      color: var(--accent)
+    }
+
+    .nav-back {
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      letter-spacing: .15em;
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      transition: .35s
+    }
+
+    .nav-back:hover {
+      color: var(--accent)
+    }
+
+    .nav-back:hover svg {
+      transform: translateX(-3px)
+    }
+
+    .nav-back svg {
+      transition: .35s
+    }
+
+    main {
+      flex: 1;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 8rem 2rem 5rem;
+      position: relative;
+      z-index: 2;
+      width: 100%
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      letter-spacing: .2em;
+      color: var(--accent);
+      margin-bottom: 1.25rem
+    }
+
+    .eyebrow-line {
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--accent)
+    }
+
+    h1 {
+      font-family: var(--font-head);
+      font-size: clamp(1.8rem, 5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: .75rem
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--accent);
+      filter: drop-shadow(0 0 14px rgba(39, 230, 208, .4))
+    }
+
+    .sub {
+      font-size: 1rem;
+      color: var(--text-dim);
+      margin-bottom: 1.75rem;
+      max-width: 540px
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-bottom: 1.75rem
+    }
+
+    .tags span {
+      font-family: var(--font-mono);
+      font-size: .6rem;
+      letter-spacing: .08em;
+      color: var(--accent3);
+      padding: .2rem .9rem;
+      border: 1px solid rgba(255, 191, 122, .3);
+      border-radius: var(--radius);
+      background: rgba(255, 191, 122, .05)
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 2rem
+    }
+
+    .highlights {
+      margin-bottom: 2rem
+    }
+
+    .hl-title {
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      letter-spacing: .15em;
+      color: var(--text-dim);
+      margin-bottom: .85rem
+    }
+
+    .hl-list {
+      list-style: none
+    }
+
+    .hl-list li {
+      padding: .6rem 0;
+      display: flex;
+      gap: .75rem;
+      font-size: .9rem;
+      color: var(--text-dim)
+    }
+
+    .hl-list li::before {
+      content: '▸';
+      color: var(--accent);
+      flex-shrink: 0;
+      font-size: .7rem;
+      margin-top: .2rem
+    }
+
+    .hl-list strong {
+      color: var(--text)
+    }
+
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .75rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      letter-spacing: .1em;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      transition: .35s;
+      position: relative;
+      overflow: hidden
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, .06);
+      transform: translateX(-100%);
+      transition: transform .3s
+    }
+
+    .btn:hover::before {
+      transform: translateX(0)
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: 700;
+      box-shadow: 0 0 20px rgba(39, 230, 208, .25)
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 32px rgba(39, 230, 208, .45);
+      transform: translateY(-1px)
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border)
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent)
+    }
+
+    footer {
+      position: relative;
+      z-index: 2;
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: .6rem;
+      letter-spacing: .1em;
+      color: var(--text-dim)
+    }
+
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      margin-bottom: 2rem;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border)
+    }
+
+    .video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-grid"></div>
+  <div class="scanline"></div>
+  <nav>
+    <div class="nav-logo"><span class="br">[</span>HSJ<span class="br">]</span></div>
+    <a href="./index.html#projects" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+        <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      </svg>
+      BACK TO PROJECTS
+    </a>
+  </nav>
+  <main>
+    <div class="eyebrow"><span class="eyebrow-line"></span><span>PERSONAL PROJECT · 2025</span><span
+        class="eyebrow-line"></span></div>
+    <h1>Eternal Quest: <em>Rebirth</em></h1>
+    <p class="sub">언리얼 엔진과 게임플레이 어빌리티 시스템을 활용한 액션 롤플레잉 게임</p>
+    <div class="tags">
+      <span>C++</span><span>Unreal Engine</span><span>Gameplay Ability System</span>
+    </div>
+
+
+    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/6zTavzibp5U" allowfullscreen
+        loading="lazy"></iframe></div>
+    <div class="highlights">
+      <p class="hl-title">KEY IMPLEMENTATIONS</p>
+      <ul class="hl-list">
+        <li><strong>픽업 아이템 투척</strong> — ±45도 랜덤 방향 + LineTrace 지형 감지 + 포물선 궤적 + GameplayCue 연동</li>
+        <li><strong>향상된 락온 시스템</strong> — 내적 계산으로 정면 최근접 적 우선 선정, 좌우 타겟 스위칭</li>
+        <li><strong>속성 UI 이중 프로그레스 바</strong> — FInterpTo 보간으로 속성 변화 시각적 체감도 향상</li>
+        <li><strong>스크린 공간 UI 시야 차단</strong> — LineTrace로 장애물 감지, 거리 기반 UI 자동 컬링</li>
+        <li><strong>SDF 텍스처 얼굴 그림자</strong> — smoothstep으로 경계 계단 현상 제거</li>
+      </ul>
+    </div>
+    <div class="cta">
+      <a href="https://hwangsangjin.notion.site/Eternal-Quest-Rebirth-1e6bf605243f8072bcb3cc43fde60dfe" target="_blank"
+        class="btn btn-primary">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+        SEE DETAILS
+      </a>
+      <a href="https://drive.google.com/file/d/1h-NyBxl8EOLiR3fD5xpHjU7VlZ0oaXvI/view" target="_blank"
+        class="btn btn-ghost">BUILD DOWNLOAD</a>
+      <a href="https://github.com/Hwangsangjin/EternalQuestRebirth" target="_blank" class="btn btn-ghost">GITHUB</a>
+    </div>
+  </main>
+  <footer>© 2026 Sangjin Hwang · hwangsangjin88@gmail.com</footer>
+</body>
+
+</html>

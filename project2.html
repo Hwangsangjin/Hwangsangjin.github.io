@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eternal Quest: Rebirth | Sangjin Hwang</title>
+  <title>Eternal Quest | Sangjin Hwang</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -33,7 +33,7 @@
       --font-head: 'Orbitron', monospace;
       --font-mono: 'Space Mono', monospace;
       --font-ko: 'Noto Sans KR', sans-serif;
-      --radius: 4px
+      --radius: 4px;
     }
 
     html {
@@ -206,6 +206,8 @@
       background: rgba(255, 191, 122, .05)
     }
 
+    @media(max-width:480px) {}
+
     .divider {
       height: 1px;
       background: var(--border);
@@ -351,41 +353,41 @@
     </a>
   </nav>
   <main>
-    <div class="eyebrow"><span class="eyebrow-line"></span><span>PERSONAL PROJECT · 2025</span><span
+    <div class="eyebrow"><span class="eyebrow-line"></span><span>TEAM PROJECT · 2024</span><span
         class="eyebrow-line"></span></div>
-    <h1>Eternal Quest: <em>Rebirth</em></h1>
-    <p class="sub">언리얼 엔진과 게임플레이 어빌리티 시스템을 활용한 액션 롤플레잉 게임</p>
+    <h1>Eternal <em>Quest</em></h1>
+    <p class="sub">언리얼 엔진과 온라인 서브시스템을 활용한 온라인 롤플레잉 게임</p>
     <div class="tags">
-      <span>C++</span><span>Unreal Engine</span><span>Gameplay Ability System</span>
+      <span>C++</span><span>Unreal Engine</span><span>Blueprint</span><span>Online Subsystem</span><span>Steamworks SDK</span><span>Git</span>
     </div>
-
-
-    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/6zTavzibp5U" allowfullscreen
+    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/oQyfxmPtru0" allowfullscreen
         loading="lazy"></iframe></div>
+
     <div class="highlights">
       <p class="hl-title">KEY IMPLEMENTATIONS</p>
       <ul class="hl-list">
-        <li><strong>픽업 아이템 투척</strong> — ±45도 랜덤 방향 + LineTrace 지형 감지 + 포물선 궤적 + GameplayCue 연동</li>
-        <li><strong>향상된 락온 시스템</strong> — 내적 계산으로 정면 최근접 적 우선 선정, 좌우 타겟 스위칭</li>
-        <li><strong>속성 UI 이중 프로그레스 바</strong> — FInterpTo 보간으로 속성 변화 시각적 체감도 향상</li>
-        <li><strong>스크린 공간 UI 시야 차단</strong> — LineTrace로 장애물 감지, 거리 기반 UI 자동 컬링</li>
-        <li><strong>SDF 텍스처 얼굴 그림자</strong> — smoothstep으로 경계 계단 현상 제거</li>
+        <li><strong>Steam 플랫폼 멀티플레이어 연동</strong> — 세션 생성·검색·참가·종료 전 과정을 API로 제어</li>
+        <li><strong>발행-구독 기반 세션 관리</strong> — 언리얼 델리게이트 시스템으로 객체 간 결합도 최소화</li>
+        <li><strong>캐릭터 직업 정보 동기화</strong> — Server RPC → NetMulticast RPC 구조로 모든 클라이언트에 전파</li>
+        <li><strong>비동기 에셋 로딩</strong> — 약한 참조 + LoadAssetAsync로 초기 로딩 시간 및 메모리 최적화</li>
+        <li><strong>콤보 공격 & 텔레포트 스킬</strong> — 애니메이션 몽타주 연동, LineTrace 장애물 보정</li>
+        <li><strong>애니메이션 시스템</strong> — State Machine 기반 상태별 전환, 네트워크 동기화</li>
       </ul>
     </div>
     <div class="cta">
-      <a href="https://hwangsangjin.notion.site/Eternal-Quest-Rebirth-1e6bf605243f8072bcb3cc43fde60dfe" target="_blank"
+      <a href="https://hwangsangjin.notion.site/Eternal-Quest-11bbf605243f81b9a110f0bb973f6ca1" target="_blank"
         class="btn btn-primary">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
           <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
         </svg>
         SEE DETAILS
       </a>
-      <a href="https://drive.google.com/file/d/1h-NyBxl8EOLiR3fD5xpHjU7VlZ0oaXvI/view" target="_blank"
+      <a href="https://drive.google.com/file/d/11og164NxDhPQfDJzsjr6zfmPUftZfIZ8/view" target="_blank"
         class="btn btn-ghost">BUILD DOWNLOAD</a>
-      <a href="https://github.com/Hwangsangjin/EternalQuestRebirth" target="_blank" class="btn btn-ghost">GITHUB</a>
+      <a href="https://github.com/Hwangsangjin/EternalQuest" target="_blank" class="btn btn-ghost">GITHUB</a>
     </div>
   </main>
-  <footer>© 2026 Sangjin Hwang · hwangsangjin88@gmail.com</footer>
+  <footer>© 2026 Sangjin Hwang. All rights reserved.</footer>
 </body>
 
 </html>

@@ -1,51 +1,44 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3-Tier Server Architecture | Sangjin Hwang</title>
+  <title>Eternal Quest: Origin | Sangjin Hwang</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
   <style>
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
 
     :root {
       --bg: #101c2a;
       --bg2: #16263a;
-      --surface: #1d2f46;
-      --border: #2d4361;
+      --surface: #1a2c40;
+      --surface2: #1f3348;
+      --border: #243850;
+      --border2: #2d4a68;
       --accent: #27e6d0;
       --accent2: #ff7fb3;
       --accent3: #ffbf7a;
       --accent4: #a78bfa;
-      --text: #e6f0fa;
-      --text-dim: #8ea2b7;
+      --text: #ddeaf8;
+      --text-dim: #7a95b0;
+      --text-muted: #4a6480;
       --white: #f5fbff;
       --font-head: 'Orbitron', monospace;
       --font-mono: 'Space Mono', monospace;
       --font-ko: 'Noto Sans KR', sans-serif;
-      --radius: 4px
+      --radius: 6px;
+      --radius-lg: 10px
     }
 
-    html {
-      scroll-behavior: smooth
-    }
+    html { scroll-behavior: smooth }
 
     body {
       background: var(--bg);
       color: var(--text);
       font-family: var(--font-ko);
-      font-size: 16px;
+      font-size: 15px;
       line-height: 1.7;
       overflow-x: hidden;
       min-height: 100vh;
@@ -53,23 +46,11 @@
       flex-direction: column
     }
 
-    a {
-      color: inherit;
-      text-decoration: none
-    }
+    a { color: inherit; text-decoration: none }
 
-    ::-webkit-scrollbar {
-      width: 4px
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--bg)
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--accent);
-      border-radius: 2px
-    }
+    ::-webkit-scrollbar { width: 4px }
+    ::-webkit-scrollbar-track { background: var(--bg) }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px }
 
     .bg-grid {
       position: fixed;
@@ -77,7 +58,7 @@
       z-index: 0;
       background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
       background-size: 60px 60px;
-      opacity: .25;
+      opacity: .15;
       pointer-events: none
     }
 
@@ -85,65 +66,45 @@
       position: fixed;
       inset: 0;
       z-index: 1;
-      background: repeating-linear-gradient(transparent, transparent 2px, rgba(0, 0, 0, .06) 2px, rgba(0, 0, 0, .06) 4px);
+      background: repeating-linear-gradient(transparent, transparent 2px, rgba(0,0,0,.04) 2px, rgba(0,0,0,.04) 4px);
       pointer-events: none
     }
 
     nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 100;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 1.25rem 2.5rem;
-      background: rgba(8, 12, 16, .85);
-      backdrop-filter: blur(12px);
+      background: rgba(10,18,28,.9);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border)
     }
 
-    .nav-logo {
-      font-family: var(--font-head);
-      font-weight: 900;
-      font-size: 1.2rem;
-      letter-spacing: .1em;
-      color: var(--white)
-    }
-
-    .nav-logo .br {
-      color: var(--accent)
-    }
+    .nav-logo { font-family: var(--font-head); font-weight: 900; font-size: 1.1rem; letter-spacing: .1em; color: var(--white) }
+    .nav-logo .br { color: var(--accent) }
 
     .nav-back {
       font-family: var(--font-mono);
-      font-size: .7rem;
+      font-size: .65rem;
       letter-spacing: .15em;
       color: var(--text-dim);
       display: flex;
       align-items: center;
       gap: .5rem;
-      transition: .35s
+      transition: .3s
     }
-
-    .nav-back:hover {
-      color: var(--accent)
-    }
-
-    .nav-back:hover svg {
-      transform: translateX(-3px)
-    }
-
-    .nav-back svg {
-      transition: .35s
-    }
+    .nav-back:hover { color: var(--accent) }
+    .nav-back:hover svg { transform: translateX(-3px) }
+    .nav-back svg { transition: .3s }
 
     main {
       flex: 1;
-      max-width: 760px;
+      max-width: 780px;
       margin: 0 auto;
-      padding: 8rem 2rem 5rem;
+      padding: 7rem 2rem 5rem;
       position: relative;
       z-index: 2;
       width: 100%
@@ -152,296 +113,157 @@
     .eyebrow {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: .75rem;
       font-family: var(--font-mono);
-      font-size: .7rem;
+      font-size: .62rem;
       letter-spacing: .2em;
       color: var(--accent);
-      margin-bottom: 1.25rem
+      margin-bottom: 1rem
     }
-
-    .eyebrow-line {
-      display: block;
-      width: 32px;
-      height: 1px;
-      background: var(--accent)
-    }
+    .eyebrow-line { display: block; width: 28px; height: 1px; background: var(--accent); opacity: .6 }
 
     h1 {
       font-family: var(--font-head);
       font-size: clamp(1.6rem, 4.5vw, 2.8rem);
       font-weight: 900;
-      line-height: 1.15;
+      line-height: 1.1;
       color: var(--white);
-      margin-bottom: .75rem
+      margin-bottom: 2rem;
+      letter-spacing: .02em
     }
+    h1 em { font-style: normal; color: var(--accent) }
 
-    h1 em {
-      font-style: normal;
-      color: var(--accent);
-      filter: drop-shadow(0 0 14px rgba(39, 230, 208, .4))
-    }
-
-    .sub {
-      font-size: 1rem;
-      color: var(--text-dim);
-      margin-bottom: 1.75rem;
-      max-width: 540px
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .4rem;
-      margin-bottom: 1.75rem
-    }
-
-    .tags span {
-      font-family: var(--font-mono);
-      font-size: .6rem;
-      letter-spacing: .08em;
-      color: var(--accent3);
-      padding: .2rem .9rem;
-      border: 1px solid rgba(255, 191, 122, .3);
-      border-radius: var(--radius);
-      background: rgba(255, 191, 122, .05)
-    }
-
-    /* Arch diagram */
-    .arch {
+    .video-wrap {
+      position: relative;
       width: 100%;
       aspect-ratio: 16/9;
-      background: var(--surface);
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
+      border-radius: var(--radius-lg);
       overflow: hidden;
-      position: relative
+      border: 1px solid var(--border2)
+    }
+    .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none }
+
+    .info-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 2.5rem
     }
 
-    .arch-flow {
+    .info-row {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: nowrap;
-      gap: 0
+      align-items: baseline;
+      gap: 1rem;
+      padding: .85rem 1.5rem;
+      border-bottom: 1px solid var(--border)
     }
+    .info-row:last-child { border-bottom: none }
 
-    .arch-node {
-      background: var(--bg2);
-      border-radius: var(--radius);
-      padding: 1rem 1.25rem;
-      text-align: center;
-      min-width: 110px;
-      flex-shrink: 0;
-      position: relative;
-      transition: .35s
-    }
-
-    .arch-node .an-icon {
-      font-size: 1.4rem;
-      margin-bottom: .3rem
-    }
-
-    .arch-node .an-label {
-      font-family: var(--font-mono);
-      font-size: .6rem;
-      letter-spacing: .12em;
-      margin-bottom: .25rem
-    }
-
-    .arch-node .an-name {
-      font-family: var(--font-head);
+    .info-key {
+      font-family: var(--font-ko);
       font-size: .9rem;
       font-weight: 700;
-      color: var(--white)
+      letter-spacing: .02em;
+      color: var(--accent);
+      white-space: nowrap;
+      min-width: 72px;
+      padding-top: .05rem
     }
 
-    .arch-node.client {
-      border: 1px solid rgba(255, 255, 255, .5)
+    .info-val {
+      font-size: .9rem;
+      color: var(--text);
+      line-height: 1.65;
+      flex: 1
     }
 
-    .arch-node.client:hover {
-      box-shadow: 0 0 28px rgba(255, 255, 255, .2);
-    }
-
-    .arch-node.web {
-      border: 1px solid rgba(39, 230, 208, .6);
-      box-shadow: 0 0 16px rgba(39, 230, 208, .15)
-    }
-
-    .arch-node.web .an-label {
-      color: var(--accent)
-    }
-
-    .arch-node.was {
-      border: 1px solid rgba(255, 191, 122, .6);
-      box-shadow: 0 0 16px rgba(255, 191, 122, .15)
-    }
-
-    .arch-node.was .an-label {
-      color: var(--accent3)
-    }
-
-    .arch-node.db {
-      border: 1px solid rgba(167, 139, 250, .6);
-      box-shadow: 0 0 16px rgba(167, 139, 250, .15)
-    }
-
-    .arch-node.db .an-label {
-      color: var(--accent4)
-    }
-
-    .arch-node.web:hover {
-      box-shadow: 0 0 28px rgba(39, 230, 208, .35)
-    }
-
-    .arch-node.was:hover {
-      box-shadow: 0 0 28px rgba(255, 191, 122, .35)
-    }
-
-    .arch-node.db:hover {
-      box-shadow: 0 0 28px rgba(167, 139, 250, .35)
-    }
-
-    .arch-arrow {
+    .impl-list {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: .3rem;
-      padding: 0 .5rem;
-      flex-shrink: 0
+      gap: 1rem;
+      margin-bottom: 2.5rem
     }
 
-    .arch-arrow .arr-label {
-      font-family: var(--font-mono);
-      font-size: .5rem;
-      color: var(--text-dim);
-      letter-spacing: .08em;
-      white-space: nowrap
+    .impl-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden
     }
 
-    .arch-arrow .arr-line {
-      position: relative;
-      width: 48px;
-      height: 12px;
+    .impl-header {
       display: flex;
-      align-items: center
+      align-items: center;
+      padding: .85rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface2)
     }
 
-    .arch-arrow .arr-line svg {
-      width: 100%;
-      height: 100%;
-      overflow: visible
+    .impl-title {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--accent3);
+      letter-spacing: .01em
     }
 
-    @keyframes dash-flow {
-      to {
-        stroke-dashoffset: -20px
-      }
-    }
+    .impl-body { padding: .75rem 1.25rem }
 
-    .flow-dash {
-      stroke-dasharray: 6 4;
-      animation: dash-flow 1.0s linear infinite
-    }
-
-    .highlights {
-      margin-bottom: 2rem
-    }
-
-    .hl-title {
-      font-family: var(--font-mono);
-      font-size: .65rem;
-      letter-spacing: .15em;
-      color: var(--text-dim);
-      margin-bottom: .85rem
-    }
-
-    .hl-list {
-      list-style: none
-    }
-
-    .hl-list li {
-      padding: .6rem 0;
+    .impl-item {
       display: flex;
       gap: .75rem;
+      padding: .5rem 0;
       font-size: .9rem;
-      color: var(--text-dim)
+      color: var(--text);
+      line-height: 1.7;
+      border-bottom: 1px solid rgba(255,255,255,.04)
     }
+    .impl-item:last-child { border-bottom: none }
 
-    .hl-list li::before {
-      content: '▸';
+    .impl-item::before {
+      content: '•';
       color: var(--accent);
       flex-shrink: 0;
-      font-size: .7rem;
+      font-size: .75rem;
       margin-top: .2rem
     }
 
-    .hl-list strong {
-      color: var(--text)
-    }
-
-    .cta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .75rem
-    }
+    .cta { display: flex; flex-wrap: wrap; gap: .75rem }
 
     .btn {
       display: inline-flex;
       align-items: center;
       gap: .5rem;
-      padding: .75rem 1.5rem;
+      padding: .7rem 1.4rem;
       font-family: var(--font-mono);
-      font-size: .72rem;
+      font-size: .68rem;
       letter-spacing: .1em;
       border-radius: var(--radius);
       border: none;
       cursor: pointer;
-      transition: .35s;
+      transition: .3s;
       position: relative;
       overflow: hidden
     }
-
     .btn::before {
-      content: '';
+      content: "";
       position: absolute;
       inset: 0;
-      background: rgba(255, 255, 255, .06);
+      background: rgba(255,255,255,.06);
       transform: translateX(-100%);
-      transition: transform .3s
+      transition: transform .3s ease
     }
-
-    .btn:hover::before {
-      transform: translateX(0)
-    }
-
+    .btn:hover::before { transform: translateX(0) }
     .btn-primary {
       background: var(--accent);
       color: var(--bg);
       font-weight: 700;
-      box-shadow: 0 0 20px rgba(39, 230, 208, .25)
+      box-shadow: 0 0 20px rgba(39,230,208,.2)
     }
-
-    .btn-primary:hover {
-      box-shadow: 0 0 32px rgba(39, 230, 208, .45);
-      transform: translateY(-1px)
-    }
-
-    .btn-ghost {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border)
-    }
-
-    .btn-ghost:hover {
-      border-color: var(--accent);
-      color: var(--accent)
-    }
+    .btn-primary:hover { box-shadow: 0 0 32px rgba(39,230,208,.4); transform: translateY(-1px) }
+    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border) }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent) }
 
     footer {
       position: relative;
@@ -450,21 +272,12 @@
       padding: 1.5rem 2rem;
       text-align: center;
       font-family: var(--font-mono);
-      font-size: .6rem;
+      font-size: .58rem;
       letter-spacing: .1em;
-      color: var(--text-dim)
-    }
-
-    .screenshot {
-      width: 100%;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      display: block;
-      margin-bottom: 2rem
+      color: var(--text-muted)
     }
   </style>
 </head>
-
 <body>
   <div class="bg-grid"></div>
   <div class="scanline"></div>
@@ -472,103 +285,108 @@
     <div class="nav-logo"><span class="br">[</span>HSJ<span class="br">]</span></div>
     <a href="./index.html#projects" class="nav-back">
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-        <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+        <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
       BACK TO PROJECTS
     </a>
   </nav>
+
   <main>
-    <div class="eyebrow"><span class="eyebrow-line"></span><span>PERSONAL PROJECT · 2026</span><span
-        class="eyebrow-line"></span></div>
-    <h1><em>3-Tier</em> Server<br>Architecture</h1>
-    <p class="sub">서버를 계층별로 분리하고 보안을 적용한 인프라 구축 프로젝트</p>
-    <div class="tags">
-      <span>Linux</span><span>NGINX</span><span>Apache Tomcat</span><span>MariaDB</span><span>SSH</span>
+    <div class="eyebrow"><span class="eyebrow-line"></span><span>TEAM PROJECT · 2024</span><span class="eyebrow-line"></span></div>
+    <h1>Eternal Quest: <em>Origin</em></h1>
+
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/oQyfxmPtru0" allowfullscreen loading="lazy"></iframe>
     </div>
-    <div class="arch">
-      <div class="arch-flow">
-        <!-- CLIENT -->
-        <div class="arch-node client">
-          <p class="an-icon">🖥️</p>
-          <p class="an-label" style="color:var(--text-dim)">CLIENT</p>
-          <p class="an-name" style="font-size:.9rem">Browser</p>
-        </div>
-        <!-- → :80 -->
-        <div class="arch-arrow">
-          <span class="arr-label">:80</span>
-          <span class="arr-line">
-            <svg viewBox="0 0 48 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <line x1="0" y1="6" x2="40" y2="6" stroke="#8ea2b7" stroke-width="1.5" class="flow-dash" />
-              <path d="M38 2L44 6L38 10" stroke="#8ea2b7" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-          </span>
-        </div>
-        <!-- WEB -->
-        <div class="arch-node web">
-          <p class="an-icon">🌐</p>
-          <p class="an-label">WEB</p>
-          <p class="an-name">NGINX</p>
-        </div>
-        <!-- → proxy_pass -->
-        <div class="arch-arrow">
-          <span class="arr-label">proxy_pass</span>
-          <span class="arr-line">
-            <svg viewBox="0 0 48 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <line x1="0" y1="6" x2="40" y2="6" stroke="#27e6d0" stroke-width="1.5" class="flow-dash" />
-              <path d="M38 2L44 6L38 10" stroke="#27e6d0" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-          </span>
-        </div>
-        <!-- WAS -->
-        <div class="arch-node was">
-          <p class="an-icon">⚙️</p>
-          <p class="an-label">WAS</p>
-          <p class="an-name">Tomcat</p>
-        </div>
-        <!-- → JDBC -->
-        <div class="arch-arrow">
-          <span class="arr-label">:3306</span>
-          <span class="arr-line">
-            <svg viewBox="0 0 48 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <line x1="0" y1="6" x2="40" y2="6" stroke="#ffbf7a" stroke-width="1.5" class="flow-dash" />
-              <path d="M38 2L44 6L38 10" stroke="#ffbf7a" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-          </span>
-        </div>
-        <!-- DB -->
-        <div class="arch-node db">
-          <p class="an-icon">🗄️</p>
-          <p class="an-label">DB</p>
-          <p class="an-name">MariaDB</p>
-        </div>
+
+    <div class="info-card">
+      <div class="info-row">
+        <span class="info-key">게임 제목</span>
+        <span class="info-val">Eternal Quest: Origin</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">게임 소개</span>
+        <span class="info-val">언리얼 엔진과 온라인 서브시스템을 활용한 온라인 롤플레잉 게임</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">진행 기간</span>
+        <span class="info-val">2024.02.05 ~ 2024.03.13</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">개발 인원</span>
+        <span class="info-val">프로그래머 3명</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">사용 기술</span>
+        <span class="info-val">Unreal Engine, Online Subsystem, Steamworks SDK, Git</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">담당 파트</span>
+        <span class="info-val">멀티플레이어 네트워크 환경 구축 및 Steam 플랫폼 연동<br>직업별 이동·공격·스킬 컴포넌트 제작 및 네트워크 동기화</span>
       </div>
     </div>
 
-    <div class="highlights">
-      <p class="hl-title">KEY IMPLEMENTATIONS</p>
-      <ul class="hl-list">
-        <li><strong>서버 계층 분리</strong> — Nginx 리버스 프록시로 WAS IP 은닉, DB는 WAS 전용 계정으로 접근 제한</li>
-        <li><strong>proxy_pass 404 오류 해결</strong> — try_files와 proxy_pass 역할 충돌 원인 분석 및 설정 분리로 해결</li>
-        <li><strong>실제 클라이언트 IP 로깅</strong> — X-Forwarded-For 헤더를 Tomcat 로그 패턴에 적용</li>
-        <li><strong>MariaDB 외부 접속 제어</strong> — bind-address 설정 변경 및 WAS 전용 계정 생성으로 DB 보안 강화</li>
-        <li><strong>포워드 프록시 검증</strong> — tinyproxy로 리버스/포워드 프록시 동작 차이 비교</li>
-        <li><strong>SQL 인젝션 대응</strong> — Statement → PreparedStatement 교체로 인증 우회 차단</li>
-      </ul>
-    </div>
-    <div class="cta">
-      <a href="https://hwangsangjin.notion.site/3-Tier-Server-Architecture-373bf605243f80bb9b3bdf6e60eb8f19"
-        target="_blank" class="btn btn-primary">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-          <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-        </svg>
-        SEE DETAILS
-      </a>
-    </div>
-  </main>
-  <footer>© 2026 Sangjin Hwang. All rights reserved.</footer>
-</body>
+    <div class="impl-list">
 
+      <div class="impl-card">
+        <div class="impl-header">
+          <span class="impl-title">멀티플레이어 네트워크 통합</span>
+        </div>
+        <div class="impl-body">
+          <div class="impl-item">Online Subsystem + Steamworks SDK 연동</div>
+          <div class="impl-item">세션 생성·검색·참가·종료 전 과정을 API로 직접 제어</div>
+          <div class="impl-item">서로 다른 네트워크 환경에서도 안정적인 매칭과 세션 참여 가능하도록 설계</div>
+        </div>
+      </div>
+
+      <div class="impl-card">
+        <div class="impl-header">
+          <span class="impl-title">발행-구독 기반 게임 세션 관리</span>
+        </div>
+        <div class="impl-body">
+          <div class="impl-item">언리얼 델리게이트 시스템으로 발행-구독 패턴 적용</div>
+          <div class="impl-item">세션 이벤트를 델리게이트로 발행, 객체 간 직접 참조 제거</div>
+          <div class="impl-item">시스템 간 결합도 감소 및 이벤트 관리 유연화</div>
+        </div>
+      </div>
+
+      <div class="impl-card">
+        <div class="impl-header">
+          <span class="impl-title">캐릭터 직업 정보 동기화</span>
+        </div>
+        <div class="impl-body">
+          <div class="impl-item">클라이언트 직업 선택 정보를 Server RPC로 전송</div>
+          <div class="impl-item">서버에서 NetMulticast RPC로 모든 클라이언트에 동기화</div>
+          <div class="impl-item">서버 권한 검증으로 클라이언트의 직접 수정 차단</div>
+          <div class="impl-item">동기화된 직업 정보 기반 비동기 에셋 로딩으로 시각적 일관성 확보</div>
+        </div>
+      </div>
+
+      <div class="impl-card">
+        <div class="impl-header">
+          <span class="impl-title">비동기 에셋 로딩</span>
+        </div>
+        <div class="impl-body">
+          <div class="impl-item">초기 일괄 로드 방식에서 LoadAssetAsync 기반 필요 시점 로딩으로 전환</div>
+          <div class="impl-item">약한 참조 경로만 관리하여 불필요한 메모리 점유 방지</div>
+          <div class="impl-item">초기 로딩 시간 단축 및 메모리 효율 개선</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cta">
+      <a href="./index.html#projects" class="btn btn-primary">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+          <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        BACK TO PROJECTS
+      </a>
+      <a href="./index.html#contact" class="btn btn-ghost">GET IN TOUCH</a>
+    </div>
+
+  </main>
+
+  <footer>© 2026 Sangjin Hwang · hwangsangjin88@gmail.com</footer>
+</body>
 </html>

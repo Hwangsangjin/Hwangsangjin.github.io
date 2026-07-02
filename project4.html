@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>황상진 | Eternal Quest: Blueprint</title>
+  <title>황상진 | Eternal Quest: Origin</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
@@ -327,37 +327,37 @@
   </nav>
 
   <main>
-    <div class="eyebrow"><span class="eyebrow-line"></span><span>PERSONAL PROJECT · 2025</span><span class="eyebrow-line"></span></div>
-    <h1>Eternal Quest: <em>Blueprint</em></h1>
+    <div class="eyebrow"><span class="eyebrow-line"></span><span>TEAM PROJECT · 2024</span><span class="eyebrow-line"></span></div>
+    <h1>Eternal Quest: <em>Origin</em></h1>
 
     <div class="video-wrap">
-      <iframe src="https://www.youtube.com/embed/HNBpYXSGUrM" allowfullscreen loading="lazy"></iframe>
+      <iframe src="https://www.youtube.com/embed/oQyfxmPtru0" allowfullscreen loading="lazy"></iframe>
     </div>
 
     <div class="info-card">
       <div class="info-row">
         <span class="info-key">게임 제목</span>
-        <span class="info-val">Eternal Quest: Blueprint</span>
+        <span class="info-val">Eternal Quest: Origin</span>
       </div>
       <div class="info-row">
         <span class="info-key">게임 소개</span>
-        <span class="info-val">언리얼 엔진과 블루프린트 비주얼 스크립팅을 활용한 액션 RPG</span>
+        <span class="info-val">언리얼 엔진과 온라인 서브시스템을 활용한 온라인 RPG</span>
       </div>
       <div class="info-row">
         <span class="info-key">진행 기간</span>
-        <span class="info-val">2025.03.20 ~ 2025.03.26</span>
+        <span class="info-val">2024.02.05 ~ 2024.03.13</span>
       </div>
       <div class="info-row">
         <span class="info-key">개발 인원</span>
-        <span class="info-val">프로그래머 1명</span>
+        <span class="info-val">프로그래머 3명</span>
       </div>
       <div class="info-row">
         <span class="info-key">사용 기술</span>
-        <span class="info-val">Unreal Engine, Blueprint</span>
+        <span class="info-val">C++, Unreal Engine, Online Subsystem, Steamworks SDK, Git</span>
       </div>
       <div class="info-row">
         <span class="info-key">담당 파트</span>
-        <span class="info-val">블루프린트 기반 플레이어 캐릭터 및 AI 구현<br>게임 UI 및 인터랙션 시스템 구현</span>
+        <span class="info-val">멀티플레이어 네트워크 환경 구축 및 Steam 플랫폼 연동<br>직업별 이동·공격·스킬 컴포넌트 제작 및 네트워크 동기화</span>
       </div>
     </div>
 
@@ -365,46 +365,46 @@
 
       <div class="impl-card">
         <div class="impl-header">
-          <span class="impl-title">타겟 락온</span>
+          <span class="impl-title">멀티플레이어 네트워크 통합</span>
         </div>
         <div class="impl-body">
-          <div class="impl-item">SphereTrace로 카메라 전방 범위 내 적 탐지, 충돌 채널 필터링으로 적 캐릭터만 감지</div>
-          <div class="impl-item">탐지된 적 중 카메라 시야 중심과 가장 가까운 적 자동 선택</div>
-          <div class="impl-item">좌우 입력으로 타겟 전환 기능 추가</div>
-          <div class="impl-item">타겟 사망, 거리 이탈 시 자동 해제 / 수동 해제 입력 지원</div>
+          <div class="impl-item">Online Subsystem + Steamworks SDK 연동</div>
+          <div class="impl-item">세션 생성·검색·참가·종료 전 과정을 API로 직접 제어</div>
+          <div class="impl-item">서로 다른 네트워크 환경에서도 안정적인 매칭과 세션 참여 가능하도록 설계</div>
         </div>
       </div>
 
       <div class="impl-card">
         <div class="impl-header">
-          <span class="impl-title">스트레이핑 애니메이션</span>
+          <span class="impl-title">발행-구독 기반 게임 세션 관리</span>
         </div>
         <div class="impl-body">
-          <div class="impl-item">캐릭터 XY 평면 속도를 추출하여 블렌드 스페이스의 속도 입력으로 사용</div>
-          <div class="impl-item">캐릭터 회전 방향과 속도 벡터의 차이로 상대 이동 각도 산출, 블렌드 스페이스 방향 입력에 연동</div>
-          <div class="impl-item">전방·후진·좌우·대각선 모든 방향 자연스럽게 표현</div>
+          <div class="impl-item">언리얼 델리게이트 시스템으로 발행-구독 패턴 적용</div>
+          <div class="impl-item">세션 이벤트를 델리게이트로 발행, 객체 간 직접 참조 제거</div>
+          <div class="impl-item">시스템 간 결합도 감소 및 이벤트 관리 유연화</div>
         </div>
       </div>
 
       <div class="impl-card">
         <div class="impl-header">
-          <span class="impl-title">SDF 텍스처 얼굴 그림자</span>
+          <span class="impl-title">캐릭터 직업 정보 동기화</span>
         </div>
         <div class="impl-body">
-          <div class="impl-item">SDF 텍스처 픽셀별 가장자리 거리 정보를 활용하여 경계 부근 부드러운 페이드 효과 적용</div>
-          <div class="impl-item">머티리얼 셰이더에서 SDF 값 샘플링 후 smoothstep으로 알파 값 점진적 감소</div>
-          <div class="impl-item">경계에서 자연스럽게 사라지는 부드러운 윤곽 그림자 구현</div>
+          <div class="impl-item">클라이언트 직업 선택 정보를 Server RPC로 전송</div>
+          <div class="impl-item">서버에서 NetMulticast RPC로 모든 클라이언트에 동기화</div>
+          <div class="impl-item">서버 권한 검증으로 클라이언트의 직접 수정 차단</div>
+          <div class="impl-item">동기화된 직업 정보 기반 비동기 에셋 로딩으로 시각적 일관성 확보</div>
         </div>
       </div>
 
       <div class="impl-card">
         <div class="impl-header">
-          <span class="impl-title">미니맵</span>
+          <span class="impl-title">비동기 에셋 로딩</span>
         </div>
         <div class="impl-body">
-          <div class="impl-item">씬 캡처 컴포넌트의 ShowOnlyActors / HiddenActors로 미니맵 전용 렌더링 설정 구성</div>
-          <div class="impl-item">건물 외벽·지붕은 미니맵 렌더링에서 제외, 실제 게임 화면에는 유지</div>
-          <div class="impl-item">건물 내부 진입 시에도 미니맵이 올바르게 표시되도록 개선</div>
+          <div class="impl-item">초기 일괄 로드 방식에서 LoadAssetAsync 기반 필요 시점 로딩으로 전환</div>
+          <div class="impl-item">약한 참조 경로만 관리하여 불필요한 메모리 점유 방지</div>
+          <div class="impl-item">초기 로딩 시간 단축 및 메모리 효율 개선</div>
         </div>
       </div>
 

@@ -2,9 +2,8 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>황상진 | Eternal Quest: World</title>
+  <title>Eternal Quest: World | Sangjin Hwang</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
@@ -89,7 +88,7 @@
 
     .nav-back {
       font-family: var(--font-mono);
-      font-size: .7rem;
+      font-size: .65rem;
       letter-spacing: .15em;
       color: var(--text);
       display: flex;
@@ -139,6 +138,7 @@
       50% { opacity: .5 }
     }
 
+    /* ── 아키텍처 다이어그램 ── */
     .arch {
       width: 100%;
       background: var(--surface);
@@ -237,7 +237,7 @@
       margin-top: .1rem
     }
 
-    .arch-node.client { border: 1px solid rgba(232,240,248,.8) }
+    .arch-node.client { border: 1px solid rgba(232,240,248,.6) }
     .arch-node.client .an-label { color: var(--text) }
     .arch-node.client .an-name { color: var(--white) }
     .arch-node.client .an-sub { color: #b0bec5 }
@@ -268,6 +268,7 @@
     @keyframes dash-flow { to { stroke-dashoffset: -20px } }
     .flow-dash { stroke-dasharray: 6 4; animation: dash-flow 1s linear infinite }
 
+    /* ── 트리 구조 ── */
     .arch-tree {
       display: flex;
       flex-direction: column;
@@ -292,6 +293,7 @@
       padding: .6rem 0
     }
 
+    /* ── 모바일 전용 ── */
     .mobile-arrow { display: none }
     .mobile-hide { display: flex }
 
@@ -315,6 +317,7 @@
       .arch-node.aws:last-child { order: 3 }
     }
 
+    /* ── 프로젝트 정보 ── */
     .info-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -350,6 +353,7 @@
       flex: 1
     }
 
+    /* ── 구현 계획 ── */
     .impl-list {
       display: flex;
       flex-direction: column;
@@ -410,6 +414,7 @@
       margin-top: .2rem
     }
 
+    /* ── CTA ── */
     .cta { display: flex; flex-wrap: wrap; gap: .75rem }
 
     .btn {
@@ -450,14 +455,15 @@
       position: relative;
       z-index: 2;
       border-top: 1px solid var(--border);
-      padding: 2rem 2rem;
+      padding: 1.5rem 2rem;
       text-align: center;
       font-family: var(--font-mono);
-      font-size: .7rem;
+      font-size: .58rem;
       letter-spacing: .1em;
-      color: var(--text)
+      color: var(--text-dim)
     }
 
+    /* ── CUSTOM CURSOR ── */
     body { cursor: none }
     .cursor {
       position: fixed;
@@ -510,24 +516,30 @@
     <div class="eyebrow"><span class="eyebrow-line"></span><span>PERSONAL PROJECT · 2026</span><span class="eyebrow-line"></span></div>
     <h1>Eternal Quest: <em>World</em></h1>
 
+    <!-- ── 아키텍처 다이어그램 ── -->
     <div class="arch">
+      <p class="arch-title">ARCHITECTURE OVERVIEW</p>
       <div class="arch-tree">
 
+        <!-- CLIENT -->
         <div class="tree-node-wrap center">
           <div class="arch-node client">
             <p class="an-icon">🖥️</p>
             <p class="an-label">GAME CLIENT</p>
-            <p class="an-name">Unreal Engine</p>
+            <p class="an-name">Unreal</p>
           </div>
         </div>
 
+        <!-- CLIENT ↕ BACKEND 양방향 화살표 -->
         <div class="tree-arrow-down">
-          <svg width="12" height="30" overflow="visible">
-            <line x1="6" y1="0" x2="6" y2="22" stroke="rgba(232,240,248,.8)" stroke-width="1.5" class="flow-dash"/>
-            <path d="M2 18L6 24L10 18" stroke="rgba(232,240,248,.8)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <svg width="12" height="40" overflow="visible">
+            <path d="M3 9L6 4L9 9" stroke="rgba(232,240,248,.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <line x1="6" y1="4" x2="6" y2="36" stroke="rgba(232,240,248,.6)" stroke-width="1.5" class="flow-dash"/>
+            <path d="M3 31L6 36L9 31" stroke="rgba(232,240,248,.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
           </svg>
         </div>
 
+        <!-- BACKEND -->
         <div class="tree-node-wrap spread">
           <div class="arch-node backend">
             <p class="an-icon">🔐</p>
@@ -541,13 +553,16 @@
           </div>
         </div>
 
+        <!-- BACKEND ↕ EC2 양방향 화살표 -->
         <div class="tree-arrow-down">
-          <svg width="12" height="30" overflow="visible">
-            <line x1="6" y1="0" x2="6" y2="22" stroke="#ffbf7a" stroke-width="1.5" class="flow-dash"/>
-            <path d="M2 18L6 24L10 18" stroke="#ffbf7a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <svg width="12" height="40" overflow="visible">
+            <path d="M3 9L6 4L9 9" stroke="#ffbf7a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <line x1="6" y1="4" x2="6" y2="36" stroke="#ffbf7a" stroke-width="1.5" class="flow-dash"/>
+            <path d="M3 31L6 36L9 31" stroke="#ffbf7a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
           </svg>
         </div>
 
+        <!-- AWS -->
         <div class="tree-node-wrap spread">
           <div class="arch-node aws">
             <p class="an-icon">🗄️</p>
@@ -572,15 +587,15 @@
             <div class="ec2-inner">
               <p class="ec2-inner-icon">⚔️</p>
               <p class="ec2-inner-label">DEDICATED SERVER</p>
-              <p class="ec2-inner-name">Unreal Engine</p>
+              <p class="ec2-inner-name">Unreal</p>
             </div>
           </div>
-
+          <!-- 모바일 전용 EC2↔RDS 화살표 -->
           <div class="mobile-arrow">
             <svg width="12" height="40" overflow="visible">
-              <path d="M2 10L6 4L10 10" stroke="#27e6d0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M3 9L6 4L9 9" stroke="#27e6d0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
               <line x1="6" y1="4" x2="6" y2="36" stroke="#27e6d0" stroke-width="1.5" class="flow-dash"/>
-              <path d="M2 30L6 36L10 30" stroke="#27e6d0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M3 31L6 36L9 31" stroke="#27e6d0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
             </svg>
           </div>
           <div class="arch-connector mobile-hide">
@@ -602,6 +617,7 @@
       </div>
     </div>
 
+    <!-- ── 프로젝트 정보 ── -->
     <div class="info-card">
       <div class="info-row">
         <span class="info-key">게임 제목</span>
@@ -621,19 +637,20 @@
       </div>
       <div class="info-row">
         <span class="info-key">사용 기술</span>
-        <span class="info-val">C++, Unreal Engine, Dedicated Server, Amazon Web Services</span>
+        <span class="info-val">C++, Unreal Engine, Gameplay Ability System, Dedicated Server, Amazon Web Services</span>
       </div>
       <div class="info-row">
         <span class="info-key">담당 파트</span>
-        <span class="info-val">데디케이티드 서버 구축 및 클라우드 인프라 연동<br>서버 권한 기반 게임플레이 시스템 구현</span>
+        <span class="info-val">데디케이티드 서버 구축 및 AWS 인프라 연동<br>서버 권한 기반 게임플레이 시스템 구현</span>
       </div>
     </div>
 
+    <!-- ── 구현 계획 ── -->
     <div class="impl-list">
 
       <div class="impl-card">
         <div class="impl-header">
-          <span class="impl-title">서버 구축 및 게임플레이 구현</span>
+          <span class="impl-title">언리얼 데디케이티드 서버 구축</span>
           <span class="impl-status doing">IN PROGRESS</span>
         </div>
         <div class="impl-body">
@@ -669,7 +686,7 @@
 
       <div class="impl-card">
         <div class="impl-header">
-          <span class="impl-title">클라우드 인프라 연동</span>
+          <span class="impl-title">AWS 인프라 연동</span>
           <span class="impl-status todo">TODO</span>
         </div>
         <div class="impl-body">
@@ -693,7 +710,7 @@
 
   </main>
 
-  <footer>© 2026 Sangjin Hwang. All rights reserved.</footer>
+  <footer>© 2026 Sangjin Hwang · hwangsangjin88@gmail.com</footer>
   <script>
     (function() {
       const cursor = document.getElementById("cursor");

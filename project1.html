@@ -2,13 +2,22 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eternal Quest: World | Sangjin Hwang</title>
+  <title>황상진 | Eternal Quest: World</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+    rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
 
     :root {
       --bg: #101c2a;
@@ -21,6 +30,7 @@
       --accent2: #ff7fb3;
       --accent3: #ffbf7a;
       --accent4: #a78bfa;
+      --good: #6ee787;
       --text: #ddeaf8;
       --text-dim: #7a95b0;
       --text-muted: #4a6480;
@@ -32,7 +42,9 @@
       --radius-lg: 10px
     }
 
-    html { scroll-behavior: smooth }
+    html {
+      scroll-behavior: smooth
+    }
 
     body {
       background: var(--bg);
@@ -46,11 +58,23 @@
       flex-direction: column
     }
 
-    a { color: inherit; text-decoration: none }
+    a {
+      color: inherit;
+      text-decoration: none
+    }
 
-    ::-webkit-scrollbar { width: 4px }
-    ::-webkit-scrollbar-track { background: var(--bg) }
-    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px }
+    ::-webkit-scrollbar {
+      width: 4px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg)
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 2px
+    }
 
     .bg-grid {
       position: fixed;
@@ -66,25 +90,36 @@
       position: fixed;
       inset: 0;
       z-index: 1;
-      background: repeating-linear-gradient(transparent, transparent 2px, rgba(0,0,0,.04) 2px, rgba(0,0,0,.04) 4px);
+      background: repeating-linear-gradient(transparent, transparent 2px, rgba(0, 0, 0, .04) 2px, rgba(0, 0, 0, .04) 4px);
       pointer-events: none
     }
 
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 1.25rem 2.5rem;
-      background: rgba(10,18,28,.9);
+      background: rgba(10, 18, 28, .9);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border)
     }
 
-    .nav-logo { font-family: var(--font-head); font-weight: 900; font-size: 1.2rem; letter-spacing: .1em; color: var(--white) }
-    .nav-logo .br { color: var(--accent) }
+    .nav-logo {
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: 1.2rem;
+      letter-spacing: .1em;
+      color: var(--white)
+    }
+
+    .nav-logo .br {
+      color: var(--accent)
+    }
 
     .nav-back {
       font-family: var(--font-mono);
@@ -96,9 +131,18 @@
       gap: .5rem;
       transition: .3s
     }
-    .nav-back:hover { color: var(--accent) }
-    .nav-back:hover svg { transform: translateX(-3px) }
-    .nav-back svg { transition: .3s }
+
+    .nav-back:hover {
+      color: var(--accent)
+    }
+
+    .nav-back:hover svg {
+      transform: translateX(-3px)
+    }
+
+    .nav-back svg {
+      transition: .3s
+    }
 
     main {
       flex: 1;
@@ -120,7 +164,14 @@
       color: var(--accent);
       margin-bottom: 1rem
     }
-    .eyebrow-line { display: block; width: 28px; height: 1px; background: var(--accent); opacity: .6 }
+
+    .eyebrow-line {
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+      opacity: .6
+    }
 
     h1 {
       font-family: var(--font-head);
@@ -131,11 +182,22 @@
       letter-spacing: .02em;
       margin-bottom: 2rem
     }
-    h1 em { font-style: normal; color: var(--accent) }
+
+    h1 em {
+      font-style: normal;
+      color: var(--accent)
+    }
 
     @keyframes badgePulse {
-      0%, 100% { opacity: 1 }
-      50% { opacity: .5 }
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: .5
+      }
     }
 
     /* ── 아키텍처 다이어그램 ── */
@@ -165,22 +227,29 @@
       padding: .6rem .75rem;
       text-align: center;
       flex-shrink: 0;
-      min-width: 100px
+      min-width: 100px;
+      position: relative
     }
 
-    .arch-node .an-icon { font-size: 1.2rem; margin-bottom: .2rem }
+    .arch-node .an-icon {
+      font-size: 1.2rem;
+      margin-bottom: .2rem
+    }
+
     .arch-node .an-label {
       font-family: var(--font-mono);
       font-size: .55rem;
       letter-spacing: .1em;
       margin-bottom: .15rem
     }
+
     .arch-node .an-name {
       font-family: var(--font-head);
       font-size: .75rem;
       font-weight: 700;
       color: var(--white)
     }
+
     .arch-node .an-sub {
       font-family: var(--font-mono);
       font-size: .55rem;
@@ -188,9 +257,23 @@
       margin-top: .1rem
     }
 
+    .an-live {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      font-family: var(--font-mono);
+      font-size: .5rem;
+      letter-spacing: .05em;
+      background: var(--good);
+      color: #0a1a10;
+      padding: .1rem .35rem;
+      border-radius: 10px;
+      font-weight: 700
+    }
+
     .arch-node.ec2-wrap {
-      border: 1px solid rgba(39,230,208,.5);
-      box-shadow: 0 0 10px rgba(39,230,208,.1);
+      border: 1px solid rgba(39, 230, 208, .5);
+      box-shadow: 0 0 10px rgba(39, 230, 208, .1);
       padding: .6rem .75rem;
       display: flex;
       flex-direction: row;
@@ -198,7 +281,10 @@
       gap: .75rem;
       max-width: 280px
     }
-    .arch-node.ec2-wrap .an-label { color: var(--accent) }
+
+    .arch-node.ec2-wrap .an-label {
+      color: var(--accent)
+    }
 
     .ec2-main {
       display: flex;
@@ -210,13 +296,17 @@
     .ec2-inner {
       margin-top: 0;
       padding: .5rem .6rem;
-      border: 1px solid rgba(167,139,250,.4);
+      border: 1px solid rgba(167, 139, 250, .4);
       border-radius: var(--radius);
-      background: rgba(167,139,250,.05);
+      background: rgba(167, 139, 250, .05);
       flex: 1
     }
 
-    .ec2-inner-icon { font-size: 1.2rem; margin-bottom: .2rem }
+    .ec2-inner-icon {
+      font-size: 1.2rem;
+      margin-bottom: .2rem
+    }
+
     .ec2-inner-label {
       font-family: var(--font-mono);
       font-size: .55rem;
@@ -224,12 +314,14 @@
       color: var(--accent4);
       margin-bottom: .15rem
     }
+
     .ec2-inner-name {
       font-family: var(--font-head);
       font-size: .75rem;
       font-weight: 700;
       color: var(--white)
     }
+
     .ec2-inner-sub {
       font-family: var(--font-mono);
       font-size: .55rem;
@@ -237,36 +329,77 @@
       margin-top: .1rem
     }
 
-    .arch-node.client { border: 1px solid rgba(232,240,248,.6) }
-    .arch-node.client .an-label { color: var(--text) }
-    .arch-node.client .an-name { color: var(--white) }
-    .arch-node.client .an-sub { color: #b0bec5 }
-    .arch-node.backend { border: 1px solid rgba(255,191,122,.5); box-shadow: 0 0 10px rgba(255,191,122,.1) }
-    .arch-node.backend .an-label { color: var(--accent3) }
+    .arch-node.client {
+      border: 1px solid rgba(232, 240, 248, .6)
+    }
+
+    .arch-node.client .an-label {
+      color: var(--text)
+    }
+
+    .arch-node.client .an-name {
+      color: var(--white)
+    }
+
+    .arch-node.client .an-sub {
+      color: #b0bec5
+    }
+
+    .arch-node.backend {
+      border: 1px solid rgba(255, 191, 122, .5);
+      box-shadow: 0 0 10px rgba(255, 191, 122, .1)
+    }
+
+    .arch-node.backend .an-label {
+      color: var(--accent3)
+    }
+
+    .arch-node.backend.live {
+      border: 1px solid rgba(110, 231, 135, .6);
+      box-shadow: 0 0 10px rgba(110, 231, 135, .15)
+    }
+
     .arch-node.aws {
-      border: 1px solid rgba(39,230,208,.5);
-      box-shadow: 0 0 10px rgba(39,230,208,.1);
+      border: 1px solid rgba(39, 230, 208, .5);
+      box-shadow: 0 0 10px rgba(39, 230, 208, .1);
       display: flex;
       flex-direction: column;
       justify-content: center
     }
-    .arch-node.aws .an-label { color: var(--accent) }
+
+    .arch-node.aws .an-label {
+      color: var(--accent)
+    }
 
     .arch-connector {
       display: flex;
       align-items: center;
       flex-shrink: 0
     }
+
     .arch-connector .conn-line {
       width: 36px;
       height: 12px;
       display: flex;
       align-items: center
     }
-    .arch-connector .conn-line svg { width: 100%; height: 100%; overflow: visible }
 
-    @keyframes dash-flow { to { stroke-dashoffset: -20px } }
-    .flow-dash { stroke-dasharray: 6 4; animation: dash-flow 1s linear infinite }
+    .arch-connector .conn-line svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible
+    }
+
+    @keyframes dash-flow {
+      to {
+        stroke-dashoffset: -20px
+      }
+    }
+
+    .flow-dash {
+      stroke-dasharray: 6 4;
+      animation: dash-flow 1s linear infinite
+    }
 
     /* ── 트리 구조 ── */
     .arch-tree {
@@ -283,7 +416,9 @@
       position: relative
     }
 
-    .tree-node-wrap.spread { width: 100% }
+    .tree-node-wrap.spread {
+      width: 100%
+    }
 
     .tree-arrow-down {
       display: flex;
@@ -294,27 +429,43 @@
     }
 
     /* ── 모바일 전용 ── */
-    .mobile-arrow { display: none }
-    .mobile-hide { display: flex }
+    .mobile-arrow {
+      display: none
+    }
+
+    .mobile-hide {
+      display: flex
+    }
 
     @media (max-width: 768px) {
       .tree-node-wrap.spread {
         flex-direction: column;
         align-items: center
       }
-      .mobile-hide { display: none }
+
+      .mobile-hide {
+        display: none
+      }
+
       .mobile-arrow {
         display: flex;
         justify-content: center;
         order: 1
       }
+
       .arch-node.ec2-wrap {
         width: auto;
         max-width: 280px;
         order: 0
       }
-      .arch-node.aws:first-child { order: 2 }
-      .arch-node.aws:last-child { order: 3 }
+
+      .arch-node.aws:first-child {
+        order: 2
+      }
+
+      .arch-node.aws:last-child {
+        order: 3
+      }
     }
 
     /* ── 프로젝트 정보 ── */
@@ -333,7 +484,10 @@
       padding: .85rem 1.5rem;
       border-bottom: 1px solid var(--border)
     }
-    .info-row:last-child { border-bottom: none }
+
+    .info-row:last-child {
+      border-bottom: none
+    }
 
     .info-key {
       font-family: var(--font-ko);
@@ -391,10 +545,26 @@
       border-radius: 20px;
       padding: .15rem .6rem
     }
-    .impl-status.todo { color: #a0b4c8; border: 1px solid #4a6480 }
-    .impl-status.doing { color: var(--accent2); border: 1px solid var(--accent2); animation: badgePulse 2s ease-in-out infinite }
 
-    .impl-body { padding: .75rem 1.25rem }
+    .impl-status.todo {
+      color: #a0b4c8;
+      border: 1px solid #4a6480
+    }
+
+    .impl-status.doing {
+      color: var(--accent2);
+      border: 1px solid var(--accent2);
+      animation: badgePulse 2s ease-in-out infinite
+    }
+
+    .impl-status.done {
+      color: var(--good);
+      border: 1px solid var(--good)
+    }
+
+    .impl-body {
+      padding: .75rem 1.25rem
+    }
 
     .impl-item {
       display: flex;
@@ -403,9 +573,13 @@
       font-size: .9rem;
       color: var(--text);
       line-height: 1.7;
-      border-bottom: 1px solid rgba(255,255,255,.04)
+      border-bottom: 1px solid rgba(255, 255, 255, .04)
     }
-    .impl-item:last-child { border-bottom: none }
+
+    .impl-item:last-child {
+      border-bottom: none
+    }
+
     .impl-item::before {
       content: '•';
       color: var(--accent);
@@ -415,7 +589,11 @@
     }
 
     /* ── CTA ── */
-    .cta { display: flex; flex-wrap: wrap; gap: .75rem }
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem
+    }
 
     .btn {
       display: inline-flex;
@@ -432,24 +610,42 @@
       position: relative;
       overflow: hidden
     }
+
     .btn::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(255,255,255,.06);
+      background: rgba(255, 255, 255, .06);
       transform: translateX(-100%);
       transition: transform .3s ease
     }
-    .btn:hover::before { transform: translateX(0) }
+
+    .btn:hover::before {
+      transform: translateX(0)
+    }
+
     .btn-primary {
       background: var(--accent);
       color: var(--bg);
       font-weight: 700;
-      box-shadow: 0 0 20px rgba(39,230,208,.2)
+      box-shadow: 0 0 20px rgba(39, 230, 208, .2)
     }
-    .btn-primary:hover { box-shadow: 0 0 32px rgba(39,230,208,.4); transform: translateY(-1px) }
-    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border) }
-    .btn-ghost:hover { border-color: var(--accent); color: var(--accent) }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 32px rgba(39, 230, 208, .4);
+      transform: translateY(-1px)
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border)
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent)
+    }
 
     footer {
       position: relative;
@@ -464,7 +660,10 @@
     }
 
     /* ── CUSTOM CURSOR ── */
-    body { cursor: none }
+    body {
+      cursor: none
+    }
+
     .cursor {
       position: fixed;
       z-index: 9999;
@@ -477,6 +676,7 @@
       transition: width .15s, height .15s, background .15s;
       mix-blend-mode: screen
     }
+
     .cursor-trail {
       position: fixed;
       z-index: 9998;
@@ -489,6 +689,7 @@
       opacity: .4;
       transition: all .25s ease
     }
+
     body:has(a:hover) .cursor,
     body:has(button:hover) .cursor {
       width: 20px;
@@ -497,6 +698,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="cursor" id="cursor"></div>
   <div class="cursor-trail" id="cursorTrail"></div>
@@ -506,14 +708,15 @@
     <a href="./index.html" class="nav-logo"><span class="br">[</span> HSJ <span class="br">]</span></a>
     <a href="./index.html#projects" class="nav-back">
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-        <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
       </svg>
       BACK TO PROJECTS
     </a>
   </nav>
 
   <main>
-    <div class="eyebrow"><span class="eyebrow-line"></span><span>PERSONAL PROJECT · 2026</span><span class="eyebrow-line"></span></div>
+    <div class="eyebrow"><span class="eyebrow-line"></span><span>PERSONAL PROJECT · 2026</span><span
+        class="eyebrow-line"></span></div>
     <h1>Eternal Quest: <em>World</em></h1>
 
     <!-- ── 아키텍처 다이어그램 ── -->
@@ -533,15 +736,18 @@
         <!-- CLIENT ↕ BACKEND 양방향 화살표 -->
         <div class="tree-arrow-down">
           <svg width="12" height="40" overflow="visible">
-            <path d="M3 9L6 4L9 9" stroke="rgba(232,240,248,.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            <line x1="6" y1="4" x2="6" y2="36" stroke="rgba(232,240,248,.6)" stroke-width="1.5" class="flow-dash"/>
-            <path d="M3 31L6 36L9 31" stroke="rgba(232,240,248,.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M3 9L6 4L9 9" stroke="rgba(232,240,248,.6)" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" fill="none" />
+            <line x1="6" y1="4" x2="6" y2="36" stroke="rgba(232,240,248,.6)" stroke-width="1.5" class="flow-dash" />
+            <path d="M3 31L6 36L9 31" stroke="rgba(232,240,248,.6)" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" fill="none" />
           </svg>
         </div>
 
         <!-- BACKEND -->
         <div class="tree-node-wrap spread">
-          <div class="arch-node backend">
+          <div class="arch-node backend live">
+            <span class="an-live">LIVE</span>
             <p class="an-icon">🔐</p>
             <p class="an-label">AUTH SERVER</p>
             <p class="an-name">Login</p>
@@ -556,9 +762,11 @@
         <!-- BACKEND ↕ EC2 양방향 화살표 -->
         <div class="tree-arrow-down">
           <svg width="12" height="40" overflow="visible">
-            <path d="M3 9L6 4L9 9" stroke="#ffbf7a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            <line x1="6" y1="4" x2="6" y2="36" stroke="#ffbf7a" stroke-width="1.5" class="flow-dash"/>
-            <path d="M3 31L6 36L9 31" stroke="#ffbf7a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M3 9L6 4L9 9" stroke="#ffbf7a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+              fill="none" />
+            <line x1="6" y1="4" x2="6" y2="36" stroke="#ffbf7a" stroke-width="1.5" class="flow-dash" />
+            <path d="M3 31L6 36L9 31" stroke="#ffbf7a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+              fill="none" />
           </svg>
         </div>
 
@@ -572,13 +780,16 @@
           <div class="arch-connector mobile-hide">
             <div class="conn-line">
               <svg viewBox="0 0 36 12" fill="none" style="width:36px;height:12px;overflow:visible">
-                <line x1="5" y1="6" x2="31" y2="6" stroke="#27e6d0" stroke-width="1.5" class="flow-dash"/>
-                <path d="M7 3L3 6L7 9" stroke="#27e6d0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                <path d="M29 3L33 6L29 9" stroke="#27e6d0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <line x1="5" y1="6" x2="31" y2="6" stroke="#27e6d0" stroke-width="1.5" class="flow-dash" />
+                <path d="M7 3L3 6L7 9" stroke="#27e6d0" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" fill="none" />
+                <path d="M29 3L33 6L29 9" stroke="#27e6d0" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" fill="none" />
               </svg>
             </div>
           </div>
           <div class="arch-node ec2-wrap">
+            <span class="an-live">LIVE</span>
             <div class="ec2-main">
               <p class="an-icon">☁️</p>
               <p class="an-label">EC2</p>
@@ -593,17 +804,21 @@
           <!-- 모바일 전용 EC2↔RDS 화살표 -->
           <div class="mobile-arrow">
             <svg width="12" height="40" overflow="visible">
-              <path d="M3 9L6 4L9 9" stroke="#27e6d0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              <line x1="6" y1="4" x2="6" y2="36" stroke="#27e6d0" stroke-width="1.5" class="flow-dash"/>
-              <path d="M3 31L6 36L9 31" stroke="#27e6d0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M3 9L6 4L9 9" stroke="#27e6d0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                fill="none" />
+              <line x1="6" y1="4" x2="6" y2="36" stroke="#27e6d0" stroke-width="1.5" class="flow-dash" />
+              <path d="M3 31L6 36L9 31" stroke="#27e6d0" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" fill="none" />
             </svg>
           </div>
           <div class="arch-connector mobile-hide">
             <div class="conn-line">
               <svg viewBox="0 0 36 12" fill="none" style="width:36px;height:12px;overflow:visible">
-                <line x1="5" y1="6" x2="31" y2="6" stroke="#27e6d0" stroke-width="1.5" class="flow-dash"/>
-                <path d="M7 3L3 6L7 9" stroke="#27e6d0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                <path d="M29 3L33 6L29 9" stroke="#27e6d0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <line x1="5" y1="6" x2="31" y2="6" stroke="#27e6d0" stroke-width="1.5" class="flow-dash" />
+                <path d="M7 3L3 6L7 9" stroke="#27e6d0" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" fill="none" />
+                <path d="M29 3L33 6L29 9" stroke="#27e6d0" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" fill="none" />
               </svg>
             </div>
           </div>
@@ -637,11 +852,11 @@
       </div>
       <div class="info-row">
         <span class="info-key">사용 기술</span>
-        <span class="info-val">C++, Unreal Engine, Dedicated Server, Amazon Web Services</span>
+        <span class="info-val">C++, Unreal Engine, Dedicated Server, Docker, nginx, MariaDB, Amazon Web Services</span>
       </div>
       <div class="info-row">
         <span class="info-key">담당 파트</span>
-        <span class="info-val">데디케이티드 서버 구축 및 AWS 인프라 연동<br>서버 권한 기반 게임플레이 시스템 구현</span>
+        <span class="info-val">데디케이티드 서버 구축 및 AWS 인프라 연동<br>서버 권한 기반 게임플레이 시스템 구현<br>인증 서버 설계 및 3티어 컨테이너 아키텍처 구축</span>
       </div>
     </div>
 
@@ -651,24 +866,26 @@
       <div class="impl-card">
         <div class="impl-header">
           <span class="impl-title">언리얼 데디케이티드 서버 구축</span>
-          <span class="impl-status doing">IN PROGRESS</span>
+          <span class="impl-status done">DONE</span>
         </div>
         <div class="impl-body">
-          <div class="impl-item">데디케이티드 서버 빌드 및 패키징</div>
-          <div class="impl-item">로컬 환경에서 클라이언트-서버 연결 테스트</div>
-          <div class="impl-item">서버 권한 기반 이동, 공격, 스킬 시스템 구현</div>
+          <div class="impl-item">Windows → Linux 크로스 컴파일로 데디케이티드 서버 빌드 및 패키징</div>
+          <div class="impl-item">UnrealBuildTool(LinuxToolChain.cs) 직접 수정으로 크로스 컴파일 파이프라인 문제 해결</div>
+          <div class="impl-item">AWS EC2(Ubuntu)에 배포, 클라이언트-서버 접속 및 리플리케이션 정상 동작 확인</div>
+          <div class="impl-item">서버 권한(HasAuthority) 기반 콤보 공격 시스템 구현</div>
         </div>
       </div>
 
       <div class="impl-card">
         <div class="impl-header">
           <span class="impl-title">인증 서버</span>
-          <span class="impl-status todo">TODO</span>
+          <span class="impl-status done">DONE</span>
         </div>
         <div class="impl-body">
-          <div class="impl-item">유저 계정 생성, 로그인, 토큰 기반 인증 구현</div>
-          <div class="impl-item">클라이언트에서 인증 서버로 HTTP 요청 처리</div>
-          <div class="impl-item">인증 토큰 검증 후 로비 서버 접속 허용</div>
+          <div class="impl-item">C++(cpp-httplib) 기반 회원가입/로그인/토큰 검증 REST API 직접 구현</div>
+          <div class="impl-item">PBKDF2-HMAC-SHA256 비밀번호 해싱, JWT 발급·검증(jwt-cpp) 적용</div>
+          <div class="impl-item">nginx → Auth Server → MariaDB 3티어 아키텍처로 Docker Compose 컨테이너화</div>
+          <div class="impl-item">회원가입 → 로그인 → 토큰 검증 전체 흐름 및 DB 저장 데이터 검증 완료</div>
         </div>
       </div>
 
@@ -687,12 +904,13 @@
       <div class="impl-card">
         <div class="impl-header">
           <span class="impl-title">AWS 인프라 연동</span>
-          <span class="impl-status todo">TODO</span>
+          <span class="impl-status doing">IN PROGRESS</span>
         </div>
         <div class="impl-body">
-          <div class="impl-item">EC2에 데디케이티드 서버 배포</div>
-          <div class="impl-item">RDS로 유저 계정, 캐릭터 정보, 인벤토리 저장</div>
-          <div class="impl-item">Auto Scaling으로 서버 부하에 따른 인스턴스 자동 확장</div>
+          <div class="impl-item">EC2에 데디케이티드 서버 배포 (완료)</div>
+          <div class="impl-item">인증 서버 3티어 스택을 데디케이티드 서버와 통합 (진행 중)</div>
+          <div class="impl-item">RDS로 유저 계정, 캐릭터 정보, 인벤토리 저장 (예정)</div>
+          <div class="impl-item">Auto Scaling으로 서버 부하에 따른 인스턴스 자동 확장 (예정)</div>
         </div>
       </div>
 
@@ -701,7 +919,7 @@
     <div class="cta">
       <a href="./index.html#projects" class="btn btn-primary">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-          <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M13 8H3M3 8L7 4M3 8L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
         </svg>
         BACK TO PROJECTS
       </a>
@@ -712,7 +930,7 @@
 
   <footer>© 2026 Sangjin Hwang · hwangsangjin88@gmail.com</footer>
   <script>
-    (function() {
+    (function () {
       const cursor = document.getElementById("cursor");
       const trail = document.getElementById("cursorTrail");
       if (!cursor || !trail) return;

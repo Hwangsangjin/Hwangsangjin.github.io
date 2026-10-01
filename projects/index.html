@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>황상진 | Game Programmer</title>
+  <title>프로젝트 | 황상진</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="/css/site.css">
-  <meta name="description" content="게임 프로그래머 황상진의 포트폴리오와 개발 기록">
-  <script type="module" crossorigin src="/assets/index-wiLHwBQg.js"></script>
 </head>
-
 <body>
   
 <header class="masthead">
@@ -24,7 +19,7 @@
     </button>
     <nav class="site-nav" aria-label="주 메뉴">
       <ul>
-        <li><a href="/" class="is-active" aria-current="page">소개</a></li><li><a href="/projects/">프로젝트</a></li><li><a href="/blog/">블로그</a></li>
+        <li><a href="/">소개</a></li><li><a href="/projects/" class="is-active" aria-current="page">프로젝트</a></li><li><a href="/blog/">블로그</a></li>
       </ul>
     </nav>
   </div>
@@ -47,18 +42,11 @@
   
 </aside>
     <main class="main">
-
-      <section class="home-intro">
-        <h1 class="page-title">안녕하세요, 게임 프로그래머 황상진입니다.</h1>
-        <div class="prose">
-          <p>C++과 언리얼 엔진으로 게임 클라이언트를 개발해 왔고, 최근에는 인증 서버를 구현하고 데디케이티드 서버를 AWS에 배포하며 백엔드와 인프라까지 영역을 넓혔습니다.</p>
-          <p>여러 플레이어가 함께 즐길 수 있는 온라인 게임 서비스를 만드는 것이 목표입니다.</p>
-        </div>
-      </section>
-
-      <section class="home-section" id="projects">
-        <h2 class="section-title">대표 프로젝트</h2>
-        <div class="project-list">
+      
+<header class="page-header">
+  <h1 class="page-title">프로젝트</h1>
+</header>
+<div class="project-list project-list--page">
 <article class="project-item">
   <a class="project-item__thumb" href="/projects/eternal-quest-world/" tabindex="-1" aria-hidden="true">
     <img src="/images/eternal-quest-world.jpg" alt="" loading="lazy" width="640" height="360">
@@ -80,117 +68,29 @@
     <p class="project-item__summary">언리얼 게임플레이 어빌리티 시스템으로 전투, 패링·방어, 락온, UI를 설계하고, 블루프린트 프로토타입의 한계를 C++로 다시 구현한 액션 RPG입니다.</p>
     <ul class="tag-list"><li>C++</li><li>Unreal Engine</li><li>Gameplay Ability System</li><li>Gameplay Tag</li></ul>
   </div>
+</article>
+<article class="project-item">
+  <a class="project-item__thumb" href="/projects/eternal-quest-blueprint/" tabindex="-1" aria-hidden="true">
+    <img src="/images/eternal-quest-blueprint.jpg" alt="" loading="lazy" width="640" height="360">
+  </a>
+  <div class="project-item__body">
+    <p class="project-item__meta">개인 프로젝트 <span>2025</span></p>
+    <h3 class="project-item__title"><a href="/projects/eternal-quest-blueprint/">Eternal Quest: Blueprint</a></h3>
+    <p class="project-item__summary">언리얼 블루프린트 비주얼 스크립팅으로 타겟 락온, 스트레이핑 애니메이션, 행동 트리 AI, SDF 얼굴 그림자와 미니맵을 구현한 액션 RPG입니다.</p>
+    <ul class="tag-list"><li>Unreal Engine</li><li>Blueprint</li></ul>
+  </div>
+</article>
+<article class="project-item">
+  <a class="project-item__thumb" href="/projects/eternal-quest-origin/" tabindex="-1" aria-hidden="true">
+    <img src="/images/eternal-quest-origin.jpg" alt="" loading="lazy" width="640" height="360">
+  </a>
+  <div class="project-item__body">
+    <p class="project-item__meta">팀 프로젝트 <span>2024</span></p>
+    <h3 class="project-item__title"><a href="/projects/eternal-quest-origin/">Eternal Quest: Origin</a></h3>
+    <p class="project-item__summary">언리얼 온라인 서브시스템과 Steamworks SDK로 Steam 로비 매칭을 구현하고, 직업 정보 동기화와 RPC 기반 전투 동기화를 맡은 3인 팀 온라인 RPG입니다.</p>
+    <ul class="tag-list"><li>C++</li><li>Unreal Engine</li><li>Online Subsystem</li><li>Steamworks SDK</li><li>Git</li></ul>
+  </div>
 </article></div>
-         <p><a class="more-link" href="/projects/">전체 프로젝트 보기 →</a></p>
-      </section>
-
-      <section class="home-section" id="skills">
-        <h2 class="section-title">기술 스택</h2>
-        <dl class="skill-list">
-          <div>
-            <dt>C++</dt>
-            <dd>
-              <ul class="chips">
-                <li>게임 로직</li>
-                <li>메모리 관리</li>
-                <li>객체지향</li>
-                <li>STL</li>
-                <li>스마트 포인터</li>
-                <li>템플릿</li>
-                <li>멀티스레딩</li>
-              </ul>
-              <p class="skill-note">게임플레이 로직부터 인증 서버까지 프로젝트의 핵심 코드 작성</p>
-            </dd>
-          </div>
-          <div>
-            <dt>언리얼 엔진</dt>
-            <dd>
-              <ul class="chips">
-                <li>게임플레이 프레임워크</li>
-                <li>게임플레이 어빌리티 시스템</li>
-                <li>온라인 서브시스템</li>
-                <li>비헤이비어 트리</li>
-                <li>애니메이션 몽타주</li>
-                <li>UMG</li>
-              </ul>
-              <p class="skill-note">GAS 기반 전투, 비헤이비어 트리 AI, Steam 세션 매칭 구현</p>
-            </dd>
-          </div>
-          <div>
-            <dt>컴퓨터 그래픽스</dt>
-            <dd>
-              <ul class="chips">
-                <li>렌더링 파이프라인</li>
-                <li>기하 변환</li>
-                <li>조명 모델</li>
-                <li>셰이더 기초</li>
-                <li>머티리얼</li>
-              </ul>
-              <p class="skill-note">SDF 얼굴 그림자, 머티리얼 기반 피격·외곽선 효과, 씬 캡처 미니맵 구현</p>
-            </dd>
-          </div>
-          <div>
-            <dt>네트워크</dt>
-            <dd>
-              <ul class="chips">
-                <li>TCP/UDP</li>
-                <li>HTTP</li>
-                <li>리슨 서버</li>
-                <li>데디케이티드 서버</li>
-                <li>리플리케이션</li>
-                <li>RPC</li>
-                <li>상태 동기화</li>
-                <li>세션 관리</li>
-              </ul>
-              <p class="skill-note">리슨 서버 기반 Steam 멀티플레이와 데디케이티드 서버 배포, RPC로 직업·전투 상태 동기화</p>
-            </dd>
-          </div>
-          <div>
-            <dt>백엔드</dt>
-            <dd>
-              <ul class="chips">
-                <li>C++ REST API</li>
-                <li>JWT 인증</li>
-                <li>PBKDF2 해싱</li>
-                <li>MariaDB</li>
-                <li>Redis</li>
-              </ul>
-              <p class="skill-note">회원가입·로그인·토큰 검증 API와 Redis 기반 채널 상태 판정 구현</p>
-            </dd>
-          </div>
-          <div>
-            <dt>인프라</dt>
-            <dd>
-              <ul class="chips">
-                <li>AWS EC2</li>
-                <li>ALB</li>
-                <li>ASG</li>
-                <li>RDS</li>
-                <li>ElastiCache</li>
-                <li>S3</li>
-                <li>CloudWatch</li>
-                <li>Docker</li>
-                <li>Linux</li>
-              </ul>
-              <p class="skill-note">오토스케일링, Multi-AZ 페일오버 검증, Bash 스크립트로 온디맨드 운영 자동화</p>
-            </dd>
-          </div>
-          <div>
-            <dt>협업</dt>
-            <dd>
-              <ul class="chips">
-                <li>Git</li>
-                <li>브랜치 전략</li>
-                <li>커밋 규칙</li>
-                <li>언리얼 코딩 표준</li>
-                <li>코드 리뷰</li>
-              </ul>
-              <p class="skill-note">팀 프로젝트에서 코딩 표준과 브랜치·커밋 규칙을 적용하고, 코드 리뷰로 설계 방향 결정</p>
-            </dd>
-          </div>
-        </dl>
-      </section>
-
     </main>
   </div>
   
@@ -198,5 +98,4 @@
   <div class="site-footer__inner">© 2026 Sangjin Hwang. All rights reserved.</div>
 </footer>
 </body>
-
 </html>

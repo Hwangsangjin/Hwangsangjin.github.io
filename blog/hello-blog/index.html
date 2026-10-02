@@ -43,8 +43,8 @@
 <nav class="category-nav" aria-label="카테고리">
   <p class="category-nav__title">카테고리</p>
   <ul>
-    <li><a href="/blog/" class="is-active">전체 글 <span class="count">1</span></a></li>
-    
+    <li><a href="/blog/">전체 글 <span class="count">1</span></a></li>
+    <li><a href="/blog/category/%EA%B8%B0%EB%A1%9D/" class="is-active">기록 <span class="count">1</span></a></li>
   </ul>
 </nav>
 </aside>
@@ -52,7 +52,7 @@
       
 <article class="article">
   <header class="article__header">
-    
+    <a class="article__category" href="/blog/category/%EA%B8%B0%EB%A1%9D/">기록</a>
     <h1 class="article__title">블로그를 시작하며</h1>
     <p class="post-meta">
       <time>2026.10.01</time>
@@ -60,11 +60,13 @@
     </p>
   </header>
   <div class="prose"><h2>왜 기록하는가</h2>
-<p>프로젝트를 진행하며 해결한 문제들을 잊지 않도록 여기에 남긴다.</p>
+<p>해결한 문제도 시간이 지나면 그 과정이 흐려지고, 이해했다고 생각한 개념도 막상 설명하려면 막히는 순간이 있습니다.</p>
+<p>그래서 문제를 해결하며 했던 고민과 시도, 그 과정에서 새롭게 배운 내용을 하나씩 정리합니다. 나중에 다시 살펴보고, 부족한 부분을 채워 나가기 위해서입니다.</p>
 <h2>앞으로 쓸 것</h2>
 <ul>
-<li>프로젝트에서 겪은 문제와 해결 과정</li>
-<li>언리얼 엔진 기능 분석</li>
+<li>공부하면서 이해한 개념과 정리한 내용</li>
+<li>문제를 해결하며 알게 된 것과 고민한 부분</li>
+<li>다시 돌아보며 부족했던 부분과 개선한 내용</li>
 </ul>
 <pre><code class="hljs language-cpp"><span class="hljs-built_in">UE_LOG</span>(LogTemp, Log, <span class="hljs-built_in">TEXT</span>(<span class="hljs-string">&quot;Hello, Blog!&quot;</span>));
 </code></pre></div>

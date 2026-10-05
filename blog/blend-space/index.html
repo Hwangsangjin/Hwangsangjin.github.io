@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blend Space에서 메시만 앞으로 밀려 나가는 문제 | 황상진</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="site-title" href="/">황상진<span class="site-subtitle">Game Programmer</span></a>
+    <button class="nav-toggle" type="button" aria-label="메뉴" aria-expanded="false"
+      onclick="var o=document.body.classList.toggle('nav-open');this.setAttribute('aria-expanded',o)">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" aria-label="주 메뉴">
+      <ul>
+        <li><a href="/">소개</a></li><li><a href="/projects/">프로젝트</a></li><li><a href="/blog/" class="is-active" aria-current="page">블로그</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+  <div class="layout">
+    
+<aside class="sidebar">
+  <div class="author">
+    <div class="author__avatar">
+      <img src="/images/avatar1.png" alt="황상진의 픽셀 아바타" width="120" height="120">
+      <img class="author__avatar-hover" src="/images/avatar2.png" alt="" width="120" height="120">
+    </div>
+    <div class="author__content">
+      <p class="author__bio">같은 세계에서 함께 플레이하는 경험을 코드로 구현합니다.</p>
+    </div>
+    <ul class="author__links">
+      <li><a href="mailto:hwangsangjin88@gmail.com"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M1.75 2h12.5c.97 0 1.75.78 1.75 1.75v8.5c0 .97-.78 1.75-1.75 1.75H1.75C.78 14 0 13.22 0 12.25v-8.5C0 2.78.78 2 1.75 2ZM1.5 5.06v7.19c0 .14.11.25.25.25h12.5c.14 0 .25-.11.25-.25V5.06L8.4 8.9a.75.75 0 0 1-.8 0L1.5 5.06Zm12.87-1.42A.25.25 0 0 0 14.25 3.5H1.75a.25.25 0 0 0-.12.03L8 7.37l6.37-3.73Z"/></svg><span>Email</span></a></li><li><a href="https://github.com/hwangsangjin" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.82 1.23.82.72 1.23 1.88.87 2.34.67.07-.52.28-.87.51-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>GitHub</span></a></li><li><a href="https://linkedin.com/in/hwangsangjin" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M0 1.15C0 .52.53 0 1.18 0h13.64C15.47 0 16 .52 16 1.15v13.7c0 .63-.53 1.15-1.18 1.15H1.18C.53 16 0 15.48 0 14.85V1.15Zm4.94 12.24V6.17H2.54v7.22h2.4ZM3.74 5.18c.84 0 1.36-.55 1.36-1.25-.02-.71-.52-1.25-1.34-1.25-.82 0-1.36.54-1.36 1.25 0 .7.52 1.25 1.33 1.25h.01Zm4.91 8.21V9.36c0-.22.02-.43.08-.58.17-.43.57-.88 1.23-.88.87 0 1.22.66 1.22 1.63v3.86h2.4V9.25c0-2.22-1.18-3.25-2.76-3.25-1.27 0-1.84.7-2.16 1.19v.02h-.02l.02-.02V6.17h-2.4c.03.68 0 7.22 0 7.22h2.4Z"/></svg><span>LinkedIn</span></a></li><li><a href="https://drive.google.com/file/d/1hpKqMPZxNI_hZ5NZ2kN7JG2_2X3f0pzW/view" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .78 2.78 0 3.75 0h6.59c.46 0 .9.18 1.23.51l2.92 2.92c.33.33.51.77.51 1.23v9.59A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25V1.75Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .14.11.25.25.25h9.5a.25.25 0 0 0 .25-.25V6H10.25A1.75 1.75 0 0 1 8.5 4.25V1.5H3.75ZM10 1.94v2.31c0 .14.11.25.25.25h2.31L10 1.94ZM5 8.75A.75.75 0 0 1 5.75 8h4.5a.75.75 0 0 1 0 1.5h-4.5A.75.75 0 0 1 5 8.75Zm0 3a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1-.75-.75Z"/></svg><span>Portfolio PDF</span></a></li>
+    </ul>
+  </div>
+  
+<nav class="category-nav" aria-label="카테고리">
+  <p class="category-nav__title">카테고리</p>
+  <ul>
+    <li><a href="/blog/">전체 글 <span class="count">2</span></a></li>
+    <li><a href="/blog/category/%EA%B8%B0%EB%A1%9D/">기록 <span class="count">1</span></a></li><li><a href="/blog/category/%EC%96%B8%EB%A6%AC%EC%96%BC%20%EC%97%94%EC%A7%84/" class="is-active">언리얼 엔진 <span class="count">1</span></a></li>
+  </ul>
+</nav>
+</aside>
+    <main class="main">
+      
+<article class="article">
+  <header class="article__header">
+    <a class="article__category" href="/blog/category/%EC%96%B8%EB%A6%AC%EC%96%BC%20%EC%97%94%EC%A7%84/">언리얼 엔진</a>
+    <h1 class="article__title">Blend Space에서 메시만 앞으로 밀려 나가는 문제</h1>
+    <p class="post-meta">
+      <time>2026.10.05</time>
+      <span>4분 분량</span>
+    </p>
+  </header>
+  <div class="prose"><h2>이동 방향 확인</h2>
+<p>캐릭터의 이동 애니메이션을 Blend Space로 구성하던 중, 애니메이션을 재생하면 캐릭터가 의도한 것보다 앞으로 밀려 나가는 현상이 발생했습니다.</p>
+<p>WASD 입력에 따라 캐릭터가 앞, 뒤, 좌, 우로 자연스럽게 움직이도록 Blend Space를 구성하고 있었기 때문에 먼저 이동 방향을 계산하는 부분부터 확인했습니다.</p>
+<p>현재 Anim Blueprint에서는 <code>Movement Component</code>에서 <code>Velocity</code>를 가져온 다음, 캐릭터의 현재 <code>Actor Rotation</code>과 함께 <code>Calculate Direction</code>에 전달하여 <code>Direction</code> 값을 계산하고 있습니다.</p>
+<pre><code class="hljs language-text">Velocity
+   +
+Actor Rotation
+   ↓
+Calculate Direction
+   ↓
+Direction
+</code></pre><p><code>Calculate Direction</code>은 캐릭터가 바라보고 있는 방향을 기준으로 실제 이동 방향을 각도로 계산합니다.</p>
+<p>예를 들어 캐릭터가 정면을 바라보고 있을 때 정면으로 이동하면 <code>Direction</code>은 0에 가까운 값이 되고, 오른쪽으로 이동하면 약 +90도, 왼쪽으로 이동하면 약 -90도, 뒤로 이동하면 ±180도에 가까운 값이 됩니다.</p>
+<p>먼저 <code>Direction</code> 계산에 문제가 있는지 확인했지만, 이 부분에서는 이상한 점을 찾지 못했습니다.</p>
+<h2>Root Bone 확인</h2>
+<p>다음으로 Skeleton의 Root Bone을 확인했습니다.</p>
+<p>Skeleton Tree를 살펴보니 현재 스켈레톤은 다음과 같은 구조를 가지고 있었습니다.</p>
+<pre><code class="hljs language-text">root
+└─ pelvis
+   └─ spine_01
+      └─ ...
+</code></pre><p>최상위에 <code>root</code> 본이 존재했기 때문에 Root Bone 자체가 없는 문제는 아니었습니다.</p>
+<p><code>show collision</code> 명령으로 캡슐을 화면에 표시해 보니, 캡슐은 제자리에 있고 메시만 앞으로 밀려 나가고 있었습니다. 캐릭터의 실제 위치는 그대로인데 애니메이션만 앞서 나간다는 뜻이었습니다.</p>
+<p><img src="/images/blog/2026-10-05-blend-space/capsule-mesh-offset.jpg" alt="캡슐은 제자리에 있고 메시만 앞으로 밀려 나간 모습"></p>
+<p>그렇다면 Blend Space에 사용하고 있는 애니메이션의 Root Bone이 실제로 이동하고 있는지 확인할 필요가 있었습니다.</p>
+<p>애니메이션은 화면상으로 캐릭터가 제자리에서 움직이는 것처럼 보이더라도, 애니메이션 데이터의 Root Bone에 이동값이 포함되어 있을 수 있습니다. 이 경우 Root Motion 설정에 따라 그 이동값이 캐릭터를 실제로 움직이거나, 메시만 캡슐에서 벗어나 보이게 만들 수 있습니다.</p>
+<h2>Force Root Lock 적용</h2>
+<p>애니메이션 시퀀스 에셋의 Details 패널에서 Root Motion 항목을 열면 <code>Force Root Lock</code> 옵션이 있습니다. 이 옵션은 Root Motion 사용 여부와 상관없이 Root Bone을 원래 위치에 고정하기 때문에, Root Bone의 이동이 원인이라면 이 옵션을 켰을 때 현상이 사라질 것이라고 생각해 적용해 보았습니다.</p>
+<p><img src="/images/blog/2026-10-05-blend-space/force-root-lock-option.jpg" alt="애니메이션 시퀀스 Details 패널의 Force Root Lock 옵션"></p>
+<p><code>Force Root Lock</code>을 활성화한 이후 캐릭터가 앞으로 튀어나가던 현상이 사라졌습니다.</p>
+<p><img src="/images/blog/2026-10-05-blend-space/capsule-mesh-fixed.jpg" alt="Force Root Lock 적용 후 캡슐과 메시가 맞춰진 모습"></p>
+<p>결과적으로 이번 문제는 <code>Direction</code> 계산이나 Root Bone의 부재 때문이 아니라, <strong>Blend Space에 사용된 애니메이션의 Root Bone에 앞으로 이동하는 값이 들어 있었기 때문</strong>이었습니다. Root Motion이 추출되지 않는 상태에서 이 이동값이 그대로 재생되면서, 캡슐은 제자리에 있는데 메시만 앞으로 밀려 나갔던 것입니다.</p>
+<p>정리하면 캐릭터의 위치와 메시의 위치가 서로 다른 경로로 정해진다는 것이었습니다.</p>
+<pre><code class="hljs language-text">입력 → Character Movement → 캡슐 이동 (실제 위치)
+
+Velocity → Calculate Direction → Blend Space → 애니메이션
+                                                 ↓
+                                     Root Bone 이동값 → 메시 위치
+</code></pre><p>Root Motion이 추출되지 않으면 Root Bone의 이동값은 캡슐에 반영되지 않고 메시에만 적용되기 때문에, 캡슐과 메시가 서로 어긋나게 됩니다.</p>
+<p>이번 문제를 해결하면서 캐릭터의 이동이 입력과 이동 계산뿐 아니라, 애니메이션 데이터 자체에도 영향을 받는다는 것을 알게 되었습니다.</p>
+<p>앞으로 Blend Space를 구성할 때는 애니메이션의 포즈만 확인하는 것이 아니라 Root Bone의 이동과 Root Motion 관련 설정도 함께 확인해야겠습니다.</p>
+</div>
+  <ul class="tag-list"><li>Blend Space</li><li>Root Motion</li><li>Force Root Lock</li></ul>
+</article>
+<nav class="pager" aria-label="이전 글과 다음 글">
+  <a class="pager__link" href="/blog/hello-blog/"><span class="pager__label">이전 글</span>블로그를 시작하며</a>
+  
+</nav>
+    </main>
+  </div>
+  
+<footer class="site-footer">
+  <div class="site-footer__inner">© 2026 Sangjin Hwang. All rights reserved.</div>
+</footer>
+</body>
+</html>

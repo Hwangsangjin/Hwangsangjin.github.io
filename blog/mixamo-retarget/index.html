@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mixamo 애니메이션을 리타겟하면 Root Motion이 어긋나는 문제 | 황상진</title>
+  <meta name="description" content="블렌더와 IK Retargeter를 거치며 생긴 문제를 하나씩 해결한 과정">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="site-title" href="/">황상진<span class="site-subtitle">Game Programmer</span></a>
+    <button class="nav-toggle" type="button" aria-label="메뉴" aria-expanded="false"
+      onclick="var o=document.body.classList.toggle('nav-open');this.setAttribute('aria-expanded',o)">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="site-nav" aria-label="주 메뉴">
+      <ul>
+        <li><a href="/">소개</a></li><li><a href="/projects/">프로젝트</a></li><li><a href="/blog/" class="is-active" aria-current="page">블로그</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+  <div class="layout">
+    
+<aside class="sidebar">
+  <div class="author">
+    <div class="author__avatar">
+      <img src="/images/avatar1.png" alt="황상진의 픽셀 아바타" width="120" height="120">
+      <img class="author__avatar-hover" src="/images/avatar2.png" alt="" width="120" height="120">
+    </div>
+    <div class="author__content">
+      <p class="author__bio">같은 세계에서 함께 플레이하는 경험을 코드로 구현합니다.</p>
+    </div>
+    <ul class="author__links">
+      <li><a href="mailto:hwangsangjin88@gmail.com"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M1.75 2h12.5c.97 0 1.75.78 1.75 1.75v8.5c0 .97-.78 1.75-1.75 1.75H1.75C.78 14 0 13.22 0 12.25v-8.5C0 2.78.78 2 1.75 2ZM1.5 5.06v7.19c0 .14.11.25.25.25h12.5c.14 0 .25-.11.25-.25V5.06L8.4 8.9a.75.75 0 0 1-.8 0L1.5 5.06Zm12.87-1.42A.25.25 0 0 0 14.25 3.5H1.75a.25.25 0 0 0-.12.03L8 7.37l6.37-3.73Z"/></svg><span>Email</span></a></li><li><a href="https://github.com/hwangsangjin" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.82 1.23.82.72 1.23 1.88.87 2.34.67.07-.52.28-.87.51-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>GitHub</span></a></li><li><a href="https://linkedin.com/in/hwangsangjin" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M0 1.15C0 .52.53 0 1.18 0h13.64C15.47 0 16 .52 16 1.15v13.7c0 .63-.53 1.15-1.18 1.15H1.18C.53 16 0 15.48 0 14.85V1.15Zm4.94 12.24V6.17H2.54v7.22h2.4ZM3.74 5.18c.84 0 1.36-.55 1.36-1.25-.02-.71-.52-1.25-1.34-1.25-.82 0-1.36.54-1.36 1.25 0 .7.52 1.25 1.33 1.25h.01Zm4.91 8.21V9.36c0-.22.02-.43.08-.58.17-.43.57-.88 1.23-.88.87 0 1.22.66 1.22 1.63v3.86h2.4V9.25c0-2.22-1.18-3.25-2.76-3.25-1.27 0-1.84.7-2.16 1.19v.02h-.02l.02-.02V6.17h-2.4c.03.68 0 7.22 0 7.22h2.4Z"/></svg><span>LinkedIn</span></a></li><li><a href="https://drive.google.com/file/d/1hpKqMPZxNI_hZ5NZ2kN7JG2_2X3f0pzW/view" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 1.75C2 .78 2.78 0 3.75 0h6.59c.46 0 .9.18 1.23.51l2.92 2.92c.33.33.51.77.51 1.23v9.59A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25V1.75Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .14.11.25.25.25h9.5a.25.25 0 0 0 .25-.25V6H10.25A1.75 1.75 0 0 1 8.5 4.25V1.5H3.75ZM10 1.94v2.31c0 .14.11.25.25.25h2.31L10 1.94ZM5 8.75A.75.75 0 0 1 5.75 8h4.5a.75.75 0 0 1 0 1.5h-4.5A.75.75 0 0 1 5 8.75Zm0 3a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1-.75-.75Z"/></svg><span>Portfolio PDF</span></a></li>
+    </ul>
+  </div>
+  
+<nav class="category-nav" aria-label="카테고리">
+  <p class="category-nav__title">카테고리</p>
+  <ul>
+    <li><a href="/blog/">전체 글 <span class="count">3</span></a></li>
+    <li><a href="/blog/category/%EA%B8%B0%EB%A1%9D/">기록 <span class="count">1</span></a></li><li><a href="/blog/category/%EC%96%B8%EB%A6%AC%EC%96%BC%20%EC%97%94%EC%A7%84/" class="is-active">언리얼 엔진 <span class="count">2</span></a></li>
+  </ul>
+</nav>
+</aside>
+    <main class="main">
+      
+<article class="article">
+  <header class="article__header">
+    <a class="article__category" href="/blog/category/%EC%96%B8%EB%A6%AC%EC%96%BC%20%EC%97%94%EC%A7%84/">언리얼 엔진</a>
+    <h1 class="article__title">Mixamo 애니메이션을 리타겟하면 Root Motion이 어긋나는 문제</h1>
+    <p class="post-meta">
+      <time>2026.10.20</time>
+      <span>6분 분량</span>
+    </p>
+  </header>
+  <div class="prose"><h2>들어가며</h2>
+<p>Mixamo에서 받은 공격 애니메이션을 프로젝트의 SwordMan 캐릭터에 적용하려고 했습니다. Mixamo 애니메이션에는 Root Bone이 없어 Root Motion을 쓸 수 없습니다. 그래서 블렌더에서 Root Bone을 추가한 뒤 언리얼로 가져와 리타겟하는 방식으로 진행했습니다.</p>
+<pre><code class="hljs language-text">Mixamo (X_Bot)
+   ↓  블렌더 애드온으로 Root Bone 추가 후 FBX 내보내기
+언리얼 (X_Bot_Skeleton)
+   ↓  IK Retargeter
+SwordMan 애니메이션 → 애니메이션 몽타주
+</code></pre><p>Root Bone은 블렌더 Extensions에 등록된 <strong>Import Mixamo - Root Motion</strong> 애드온으로 추가했습니다. Mixamo FBX 폴더를 지정해 가져오면 Root Bone을 만들고, Hips에 있던 이동을 Root Bone으로 옮기는 베이크까지 자동으로 처리해 줍니다.</p>
+<p><img src="/images/blog/2026-10-20-mixamo-retarget/blender-addon-import.png" alt="블렌더 Extensions에 설치된 Import Mixamo - Root Motion 애드온"></p>
+<p>그런데 리타겟한 애니메이션을 재생하자 문제가 연달아 나타났습니다.</p>
+<ul>
+<li>다리가 움직이지 않음</li>
+<li>팔이 원본 동작과 다른 방향을 향함</li>
+<li>Root Motion을 켜도 캐릭터가 앞으로 나가지 않음</li>
+<li>공격할 때 카메라가 흔들림</li>
+</ul>
+<p>증상이 여러 가지라 하나씩 원인을 확인했습니다.</p>
+<h2>다리가 움직이지 않는 문제</h2>
+<p>처음에는 애니메이션을 우클릭해 Retarget Animations로 리타겟했습니다. 이 방식은 IK Rig와 IK Retargeter를 자동으로 만들어 주는데(<code>IK_AutoGeneratedSource</code>, <code>RTG_AutoGenerated</code>), 자동 생성된 소스 IK Rig를 열어 보니 <strong>다리 체인이 하나도 잡혀 있지 않았습니다.</strong></p>
+<p>원인은 블렌더를 거치면서 바뀐 본 이름이었습니다. 자동 생성 기능은 <code>mixamorig:LeftUpLeg</code> 같은 Mixamo 본 이름 규칙으로 다리를 찾는데, 언리얼로 들어온 스켈레톤의 본 이름은 다음처럼 바뀌어 있었습니다.</p>
+<pre><code class="hljs language-text">mixamorig:LeftUpLeg   →  upleg_L
+mixamorig:LeftLeg     →  leg_L
+mixamorig:LeftFoot    →  foot_L
+mixamorig:LeftToeBase →  toebase_L
+</code></pre><p>블렌더의 아웃라이너를 보니 애드온으로 가져오는 단계에서 이미 <code>upleg.L</code>처럼 블렌더 방식의 이름으로 바뀌어 있었고, 이 이름이 언리얼에서 <code>upleg_L</code>로 들어온 것이었습니다.</p>
+<p><img src="/images/blog/2026-10-20-mixamo-retarget/blender-root-bone-hierarchy.png" alt="애드온으로 가져온 뒤 root 아래에 hips와 upleg.L 등이 이어진 본 계층"></p>
+<p>다리 체인이 없으니 다리는 애니메이션을 받지 못하고 기본 포즈에 머물러 있었고, 골반과 상체만 애니메이션대로 회전했습니다. 몸을 크게 트는 공격 동작에서 상체만 돌아가다 보니 그 사이에 있는 허리가 꼬인 것처럼 보였던 것입니다.</p>
+<p>자동 생성 대신 IK Rig를 새로 만들어 체인을 하나씩 지정했습니다. 이때 SwordMan의 IK Rig는 다리를 <code>LeftLeg</code>(허벅지~발목)와 <code>LeftFoot</code>(발)으로 나누고 있어서, 소스도 같은 구조로 맞췄습니다.</p>
+<table>
+<thead>
+<tr>
+<th>체인</th>
+<th>소스(X_Bot) 본</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Spine</td>
+<td>spine ~ spine2</td>
+</tr>
+<tr>
+<td>LeftArm</td>
+<td>arm_L ~ hand_L</td>
+</tr>
+<tr>
+<td>LeftLeg</td>
+<td>upleg_L ~ foot_L</td>
+</tr>
+<tr>
+<td>LeftFoot</td>
+<td>toebase_L</td>
+</tr>
+</tbody></table>
+<p>처음에는 소스의 <code>LeftLeg</code>를 발가락까지 하나로 묶었는데, 체인 이름뿐 아니라 <strong>체인이 어디서 끝나는지도 양쪽이 같아야</strong> 했습니다.</p>
+<h2>팔이 다른 방향을 향하는 문제</h2>
+<p>다리를 고치고 나니 이번에는 팔이 맞지 않았습니다. Mixamo는 T-포즈, SwordMan은 A-포즈라서 리타겟 포즈를 맞추기 위해 소스 쪽에 Auto Align을 적용해 둔 상태였습니다.</p>
+<p>언리얼 에디터에서 Python 스크립트로 두 스켈레톤의 본 트랜스폼을 출력해 비교해 보니, 소스의 <code>root</code> 본에 블렌더에서 넘어온 <strong>회전(Roll 90°)과 스케일(100) 값</strong>이 남아 있었습니다.</p>
+<pre><code class="hljs language-text">X_Bot root    rot(P,Y,R) = (0, 0, 90)   scale = 100
+SwordMan root rot(P,Y,R) = (0, 0, 0)    scale = 1
+</code></pre><p>같은 프레임에서 왼쪽 위팔이 향하는 방향을 계산해 보니 원본과 결과가 약 33° 어긋나 있었습니다. T-포즈와 A-포즈의 팔 각도 차이(약 36°)와 거의 같았기 때문에, 소스 쪽 Auto Align이 root의 회전 때문에 팔을 잘못 돌려 놓았다고 판단했습니다.</p>
+<p>소스는 원래 T-포즈로 두고, <strong>root에 회전이 없는 타겟 쪽을 소스에 맞춰 Auto Align</strong> 하는 방식으로 바꾸자 팔이 원본 동작을 따라갔습니다.</p>
+<h2>Root Motion이 적용되지 않는 문제</h2>
+<p>애니메이션 시퀀스에서 <code>Enable Root Motion</code>을 켜도 캐릭터가 앞으로 나가지 않았습니다. 공격하면 메시만 캡슐을 벗어났다가 끝나는 순간 제자리로 돌아왔습니다.</p>
+<p><video src="/images/blog/2026-10-20-mixamo-retarget/root-motion-before.mp4" autoplay loop muted playsinline aria-label="공격하면 메시만 캡슐을 벗어났다가 되돌아오는 모습"></video></p>
+<p>리타겟 전후의 Root Bone 이동량을 출력해 보니 원인이 바로 보였습니다.</p>
+<pre><code class="hljs language-text">root    이동 (0, 245.0, 0)    ← 소스(X_Bot)
+root    이동 (0, 0, 0)        ← 리타겟 결과
+pelvis  이동 (0, 144.9, 0)    ← 리타겟 결과
+</code></pre><p>애드온이 베이크한 대로 소스에는 Root Bone 이동이 들어 있었지만, 리타겟 결과에서는 골반만 앞으로 나가고 <code>root</code>는 제자리였습니다. Root Motion은 Root Bone의 이동만 캐릭터 이동으로 바꾸기 때문에 캐릭터가 움직이지 않았던 것입니다.</p>
+<p>IK Retargeter의 Root Motion op를 확인해 보니 Source Root와 Target Root가 비어 있었습니다. 타겟 IK Rig에 <code>Root</code> 체인이 없어서 자동으로 잡히지 않은 것으로 보입니다. 다음처럼 설정한 뒤 다시 내보내자 <code>root</code>가 골반을 따라 이동했습니다.</p>
+<table>
+<thead>
+<tr>
+<th>설정</th>
+<th>값</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Source Root / Target Root</td>
+<td>root</td>
+</tr>
+<tr>
+<td>Root Motion Source</td>
+<td>Generate From Target Pelvis</td>
+</tr>
+<tr>
+<td>Root Height Source</td>
+<td>Snap To Ground</td>
+</tr>
+</tbody></table>
+<p>소스 Root Bone을 그대로 복사하지 않고 타겟 골반에서 새로 만든 이유는, 앞에서 본 것처럼 소스 <code>root</code>에 블렌더의 회전이 남아 있었기 때문입니다.</p>
+<p><video src="/images/blog/2026-10-20-mixamo-retarget/root-motion-after.mp4" autoplay loop muted playsinline aria-label="Root Motion 적용 후 캡슐이 메시를 따라 이동하는 모습"></video></p>
+<h2>공격할 때 카메라가 흔들리는 문제</h2>
+<p>Root Motion이 동작하자 공격할 때 카메라가 흔들렸습니다. <code>Generate From Target Pelvis</code>는 골반의 수평 이동을 그대로 Root Bone에 옮기는데, 칼을 휘두를 때 골반은 앞으로만 가지 않고 좌우로도 움직입니다. 확인해 보니 Root Bone이 좌우로 최대 <strong>47.8</strong>만큼 움직이고 있었고, 캡슐과 그 뒤를 따르는 카메라도 함께 흔들렸습니다.</p>
+<p><video src="/images/blog/2026-10-20-mixamo-retarget/camera-shake-before.mp4" autoplay loop muted playsinline aria-label="공격하는 동안 카메라가 좌우로 흔들리는 모습"></video></p>
+<p>에디터의 Python 스크립트로 애니메이션의 키를 고쳐 Root Bone의 좌우(X) 이동을 0으로 만들고, 뺀 값은 골반에 더했습니다.</p>
+<pre><code class="hljs language-text">root   X  →  0
+pelvis X  →  pelvis X + root X
+</code></pre><p>이렇게 하면 화면에 보이는 몸의 움직임은 그대로이고, 캡슐과 카메라만 흔들림 없이 앞으로 이동합니다.</p>
+<p><video src="/images/blog/2026-10-20-mixamo-retarget/camera-shake-after.mp4" autoplay loop muted playsinline aria-label="좌우 이동을 제거한 뒤 카메라가 흔들리지 않는 모습"></video></p>
+<h2>마치며</h2>
+<p>결과적으로 네 가지 증상은 서로 다른 단계에서 생긴 문제였습니다. 다리와 팔은 <strong>블렌더를 거치며 바뀐 본 이름과 Root Bone의 회전</strong> 때문이었고, Root Motion과 카메라 흔들림은 <strong>IK Retargeter의 Root Motion 설정</strong> 때문이었습니다.</p>
+<p>리타겟한 애니메이션의 Root Motion은 다음 경로를 거쳐 만들어지며, <strong>블렌더의 Root Bone과 IK Retargeter의 설정이 모두 결과에 영향을 줍니다.</strong></p>
+<pre><code class="hljs language-text">Mixamo FBX
+   ↓  블렌더 애드온 (Root Bone 추가, 이동 베이크)
+언리얼 X_Bot
+   ↓  IK Retargeter (Root Motion op: 타겟 골반 → root)
+SwordMan 애니메이션의 root 이동
+   ↓
+캡슐 이동 → 카메라 이동
+</code></pre></div>
+  <ul class="tag-list"><li>Mixamo</li><li>Blender</li><li>IK Retargeter</li><li>Root Motion</li></ul>
+</article>
+<nav class="pager" aria-label="이전 글과 다음 글">
+  <a class="pager__link" href="/blog/blend-space/"><span class="pager__label">이전 글</span>Blend Space에서 메시만 앞으로 밀려 나가는 문제</a>
+  
+</nav>
+    </main>
+  </div>
+  
+<footer class="site-footer">
+  <div class="site-footer__inner">© 2026 Sangjin Hwang. All rights reserved.</div>
+</footer>
+</body>
+</html>

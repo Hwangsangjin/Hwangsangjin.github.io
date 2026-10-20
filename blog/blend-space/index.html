@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blend Space에서 메시만 앞으로 밀려 나가는 문제 | 황상진</title>
-  <meta name="description" content="Blend Space 적용 후 메시가 캡슐보다 앞으로 밀려 나가는 현상을 Force Root Lock으로 해결한 과정">
+  <meta name="description" content="애니메이션에 들어 있던 Root Bone 이동값을 Force Root Lock으로 고정해 해결한 과정">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="/css/site.css">
@@ -44,8 +44,8 @@
 <nav class="category-nav" aria-label="카테고리">
   <p class="category-nav__title">카테고리</p>
   <ul>
-    <li><a href="/blog/">전체 글 <span class="count">2</span></a></li>
-    <li><a href="/blog/category/%EA%B8%B0%EB%A1%9D/">기록 <span class="count">1</span></a></li><li><a href="/blog/category/%EC%96%B8%EB%A6%AC%EC%96%BC%20%EC%97%94%EC%A7%84/" class="is-active">언리얼 엔진 <span class="count">1</span></a></li>
+    <li><a href="/blog/">전체 글 <span class="count">3</span></a></li>
+    <li><a href="/blog/category/%EA%B8%B0%EB%A1%9D/">기록 <span class="count">1</span></a></li><li><a href="/blog/category/%EC%96%B8%EB%A6%AC%EC%96%BC%20%EC%97%94%EC%A7%84/" class="is-active">언리얼 엔진 <span class="count">2</span></a></li>
   </ul>
 </nav>
 </aside>
@@ -57,11 +57,12 @@
     <h1 class="article__title">Blend Space에서 메시만 앞으로 밀려 나가는 문제</h1>
     <p class="post-meta">
       <time>2026.10.05</time>
-      <span>4분 분량</span>
+      <span>3분 분량</span>
     </p>
   </header>
-  <div class="prose"><h2>이동 방향 확인</h2>
+  <div class="prose"><h2>들어가며</h2>
 <p>캐릭터의 이동 애니메이션을 Blend Space로 구성하던 중, 애니메이션을 재생하면 캐릭터가 의도한 것보다 앞으로 밀려 나가는 현상이 발생했습니다.</p>
+<h2>이동 방향 확인</h2>
 <p>WASD 입력에 따라 캐릭터가 앞, 뒤, 좌, 우로 자연스럽게 움직이도록 Blend Space를 구성하고 있었기 때문에 먼저 이동 방향을 계산하는 부분부터 확인했습니다.</p>
 <p>현재 Anim Blueprint에서는 <code>Movement Component</code>에서 <code>Velocity</code>를 가져온 다음, 캐릭터의 현재 <code>Actor Rotation</code>과 함께 <code>Calculate Direction</code>에 전달하여 <code>Direction</code> 값을 계산하고 있습니다.</p>
 <pre><code class="hljs language-text">Velocity
@@ -73,7 +74,7 @@ Calculate Direction
 Direction
 </code></pre><p><code>Calculate Direction</code>은 캐릭터가 바라보고 있는 방향을 기준으로 실제 이동 방향을 각도로 계산합니다.</p>
 <p>예를 들어 캐릭터가 정면을 바라보고 있을 때 정면으로 이동하면 <code>Direction</code>은 0에 가까운 값이 되고, 오른쪽으로 이동하면 약 +90도, 왼쪽으로 이동하면 약 -90도, 뒤로 이동하면 ±180도에 가까운 값이 됩니다.</p>
-<p>먼저 <code>Direction</code> 계산에 문제가 있는지 확인했지만, 이 부분에서는 이상한 점을 찾지 못했습니다.</p>
+<p>확인해 보니 <code>Direction</code> 계산에는 이상한 점이 없었습니다.</p>
 <h2>Root Bone 확인</h2>
 <p>다음으로 Skeleton의 Root Bone을 확인했습니다.</p>
 <p>Skeleton Tree를 살펴보니 현재 스켈레톤은 다음과 같은 구조를 가지고 있었습니다.</p>
@@ -82,31 +83,28 @@ Direction
    └─ spine_01
       └─ ...
 </code></pre><p>최상위에 <code>root</code> 본이 존재했기 때문에 Root Bone 자체가 없는 문제는 아니었습니다.</p>
-<p><code>show collision</code> 명령으로 캡슐을 화면에 표시해 보니, 캡슐은 제자리에 있고 메시만 앞으로 밀려 나가고 있었습니다. 캐릭터의 실제 위치는 그대로인데 애니메이션만 앞서 나간다는 뜻이었습니다.</p>
-<p><img src="/images/blog/2026-10-05-blend-space/capsule-mesh-offset.jpg" alt="캡슐은 제자리에 있고 메시만 앞으로 밀려 나간 모습"></p>
-<p>그렇다면 Blend Space에 사용하고 있는 애니메이션의 Root Bone이 실제로 이동하고 있는지 확인할 필요가 있었습니다.</p>
-<p>애니메이션은 화면상으로 캐릭터가 제자리에서 움직이는 것처럼 보이더라도, 애니메이션 데이터의 Root Bone에 이동값이 포함되어 있을 수 있습니다. 이 경우 Root Motion 설정에 따라 그 이동값이 캐릭터를 실제로 움직이거나, 메시만 캡슐에서 벗어나 보이게 만들 수 있습니다.</p>
+<p><code>show collision</code> 명령으로 캡슐을 화면에 표시해 보니, <strong>캡슐은 제자리에 있고 메시만 앞으로 밀려 나가고 있었습니다.</strong></p>
+<p><video src="/images/blog/2026-10-05-blend-space/mesh-ahead-of-capsule.mp4" autoplay loop muted playsinline aria-label="달리기 시작하면 메시만 캡슐보다 앞으로 나가는 모습"></video></p>
+<p>애니메이션은 화면상으로 캐릭터가 제자리에서 움직이는 것처럼 보이더라도, <strong>Blend Space에 사용된 애니메이션 자체의 Root Bone에 이동값이 포함되어 있을 수 있습니다.</strong> 이 경우 Root Motion 설정에 따라 그 이동값이 캐릭터를 실제로 움직이거나, 지금처럼 메시만 캡슐에서 벗어나 보이게 만들 수 있습니다.</p>
 <h2>Force Root Lock 적용</h2>
-<p>애니메이션 시퀀스 에셋의 Details 패널에서 Root Motion 항목을 열면 <code>Force Root Lock</code> 옵션이 있습니다. 이 옵션은 Root Motion 사용 여부와 상관없이 Root Bone을 원래 위치에 고정하기 때문에, Root Bone의 이동이 원인이라면 이 옵션을 켰을 때 현상이 사라질 것이라고 생각해 적용해 보았습니다.</p>
-<p><img src="/images/blog/2026-10-05-blend-space/force-root-lock-option.jpg" alt="애니메이션 시퀀스 Details 패널의 Force Root Lock 옵션"></p>
-<p><code>Force Root Lock</code>을 활성화한 이후 캐릭터가 앞으로 튀어나가던 현상이 사라졌습니다.</p>
-<p><img src="/images/blog/2026-10-05-blend-space/capsule-mesh-fixed.jpg" alt="Force Root Lock 적용 후 캡슐과 메시가 맞춰진 모습"></p>
+<p>애니메이션 시퀀스의 Asset Details 패널에서 Root Motion 항목을 열면 <code>Force Root Lock</code> 옵션이 있습니다. 이 옵션은 <strong>Root Motion 사용 여부와 상관없이 Root Bone을 원래 위치에 고정</strong>하기 때문에, Root Bone의 이동이 원인이라면 켰을 때 현상이 사라질 것이라고 생각해 적용해 보았습니다.</p>
+<p><img src="/images/blog/2026-10-05-blend-space/force-root-lock-setting.jpg" alt="애니메이션 시퀀스 Asset Details 패널의 Force Root Lock 옵션"></p>
+<p><code>Force Root Lock</code>을 활성화한 이후 <strong>캐릭터가 앞으로 밀려 나가던 현상이 사라졌습니다.</strong></p>
+<p><video src="/images/blog/2026-10-05-blend-space/force-root-lock-fixed.mp4" autoplay loop muted playsinline aria-label="Force Root Lock 적용 후 캡슐과 메시가 함께 달리는 모습"></video></p>
+<h2>마치며</h2>
 <p>결과적으로 이번 문제는 <code>Direction</code> 계산이나 Root Bone의 부재 때문이 아니라, <strong>Blend Space에 사용된 애니메이션의 Root Bone에 앞으로 이동하는 값이 들어 있었기 때문</strong>이었습니다. Root Motion이 추출되지 않는 상태에서 이 이동값이 그대로 재생되면서, 캡슐은 제자리에 있는데 메시만 앞으로 밀려 나갔던 것입니다.</p>
-<p>정리하면 캐릭터의 위치와 메시의 위치가 서로 다른 경로로 정해진다는 것이었습니다.</p>
+<p>즉, 캐릭터의 위치는 입력과 이동 계산으로 정해지고, 메시의 위치는 <strong>애니메이션 데이터</strong>로 정해집니다.</p>
 <pre><code class="hljs language-text">입력 → Character Movement → 캡슐 이동 (실제 위치)
 
-Velocity → Calculate Direction → Blend Space → 애니메이션
-                                                 ↓
-                                     Root Bone 이동값 → 메시 위치
-</code></pre><p>Root Motion이 추출되지 않으면 Root Bone의 이동값은 캡슐에 반영되지 않고 메시에만 적용되기 때문에, 캡슐과 메시가 서로 어긋나게 됩니다.</p>
-<p>이번 문제를 해결하면서 캐릭터의 이동이 입력과 이동 계산뿐 아니라, 애니메이션 데이터 자체에도 영향을 받는다는 것을 알게 되었습니다.</p>
-<p>앞으로 Blend Space를 구성할 때는 애니메이션의 포즈만 확인하는 것이 아니라 Root Bone의 이동과 Root Motion 관련 설정도 함께 확인해야겠습니다.</p>
-</div>
+Velocity → Calculate Direction → Blend Space
+   ↓
+애니메이션의 Root Bone 이동값 → 메시 위치
+</code></pre></div>
   <ul class="tag-list"><li>Blend Space</li><li>Root Motion</li><li>Force Root Lock</li></ul>
 </article>
 <nav class="pager" aria-label="이전 글과 다음 글">
   <a class="pager__link" href="/blog/hello-blog/"><span class="pager__label">이전 글</span>블로그를 시작하며</a>
-  
+  <a class="pager__link pager__link--next" href="/blog/mixamo-retarget/"><span class="pager__label">다음 글</span>Mixamo 애니메이션을 리타겟하면 Root Motion이 어긋나는 문제</a>
 </nav>
     </main>
   </div>
